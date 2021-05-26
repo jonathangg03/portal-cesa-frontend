@@ -1,0 +1,119 @@
+/* Menu up */
+:root {
+  --bg-sections: #fffffd;
+  --border-sections: #efeef1;
+  --gray: #8a8a8c;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  background-color: var(--bg-sections);
+  border: 1px solid var(--border-sections);
+  color: var(--gray);
+}
+
+h2 {
+  padding-left: 20px;
+  font-size: 1.7rem;
+}
+
+.top-menu {
+  display: flex;
+  list-style: none;
+  height: 55px;
+}
+
+.top-menu__item {
+  padding: 0 25px;
+  display: flex;
+  font-size: 1.4rem;
+  align-items: center;
+}
+
+/*Menu separator*/
+.menu-separator {
+  padding-left: 260px;
+}
+
+/* Menu left */
+.menu {
+  width: 260px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  background-color: #4e73cce0;
+  color: white;
+}
+
+.menu-bg {
+  width: 260px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background-image: url("../../design/barraizq.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #ffffff54;
+  margin-bottom: 30px;
+}
+
+hr {
+  margin-bottom: 30px;
+}
+
+.menu__container {
+  padding: 0 20px;
+  list-style: none;
+}
+
+.menu__details {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 0;
+  margin: 5px 15px;
+  /* border-bottom: 0.5px solid #ffffff63; */
+}
+
+.menu__title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.menu__details:hover {
+  background-color: #ffffff30;
+}
+
+.menu__details:focus-within {
+  background-color: initial;
+}
+
+.menu__title .fas {
+  width: 30px;
+  height: 30px;
+  font-size: 2.4rem;
+  margin-right: 15px;
+}
+
+.menu__list-item a {
+  margin: 10px 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.menu__list-item a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}

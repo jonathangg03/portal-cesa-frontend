@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/globals.css" />
+    <link rel="stylesheet" href="./styles/agregar.css" />
+    <link rel="stylesheet" href="./styles/menu.css" />
+    <script
+      src="https://kit.fontawesome.com/473d269aa9.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Nuevo contacto</title>
+  </head>
+  <body>
+    <div class="menu-separator">
+      <header>
+        <h2>Directorio</h2>
+        <nav>
+          <ul class="top-menu">
+            <li class="top-menu__item">Directorio</li>
+            <li class="top-menu__item">Clientes</li>
+            <li class="top-menu__item">Documentos</li>
+            <li class="top-menu__item">Pedidos de servicio</li>
+            <li class="top-menu__item">Salir</li>
+          </ul>
+        </nav>
+      </header>
+      <section class="add">
+        <h3>EDITAR CONTACTO</h3>
+        <form action="" id="add__form" class="add__form">
+          <div class="add_form-element-container">
+            <label for="firstName">
+              <p>PRIMER NOMBRE</p>
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                placeholder="Primer nombre"
+                required
+                class="add__form-input"
+              />
+            </label>
+            <label for="secondName">
+              <p>SEGUNDO NOMBRE</p>
+              <input
+                type="text"
+                name="secondName"
+                id="secondName"
+                placeholder="Segundo nombre"
+                class="add__form-input"
+              />
+            </label>
+            <label for="firstLastname">
+              <p>APELLIDO PATERNO</p>
+              <input
+                type="text"
+                name="firstLastname"
+                id="firstLastname"
+                placeholder="Apellido paterno"
+                required
+                class="add__form-input"
+              />
+            </label>
+            <label for="secondLastname">
+              <p>APELLIDO MATERNO</p>
+              <input
+                type="text"
+                name="secondLastname"
+                id="secondLastname"
+                placeholder="Apellido materno"
+                class="add__form-input"
+              />
+            </label>
+            <label for="email">
+              <p>CORREO</p>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                placeholder="napellido@grupocesa.com"
+                required
+                class="add__form-input"
+              />
+            </label>
+            <label for="prefix">
+              <p>PREFIJO</p>
+              <input
+                type="text"
+                name="prefix"
+                id="prefix"
+                placeholder="+506"
+                required
+                class="add__form-input"
+              />
+            </label>
+            <label for="phone">
+              <p>TELÉFONO</p>
+              <input
+                type="number"
+                name="phone"
+                id="phone"
+                placeholder="2202-2600"
+                required
+                class="add__form-input"
+              />
+            </label>
+            <label for="cellphone">
+              <p>CELULAR</p>
+              <input
+                type="number"
+                name="cellphone"
+                id="cellphone"
+                placeholder="2202-2600"
+                class="add__form-input"
+              />
+            </label>
+            <label for="extension">
+              <p>EXTENSIÓN</p>
+              <input
+                type="number"
+                name="extension"
+                id="extension"
+                placeholder="2600"
+                class="add__form-input"
+              />
+            </label>
+            <label for="tags">
+              <p>TAGS</p>
+              <input
+                type="text"
+                name="tags"
+                id="tags"
+                placeholder="bd, redes, apodo"
+                class="add__form-input"
+              />
+            </label>
+          </div>
+          <button type="submit" id="add__button">Editar Contacto</button>
+        </form>
+      </section>
+    </div>
+    <section class="menu">
+      <h1>PORTAL CESA</h1>
+      <ul class="menu__container">
+        <details class="menu__details" open>
+          <summary class="menu__title">
+            <i class="fas fa-address-book"></i>
+            <p>DIRECTORIO</p>
+          </summary>
+          <ul class="menu__list">
+            <li class="menu__list-item">
+              <a href="./contactos.html">Ver contactos</a>
+            </li>
+            <li class="menu__list-item">
+              <a href="./contactos_agregar.html">Agregar contacto</a>
+            </li>
+          </ul>
+        </details>
+        <details class="menu__details">
+          <summary class="menu__title">
+            <i class="fas fa-book"></i>
+            <p>CLIENTES</p>
+          </summary>
+          <ul>
+            <li class="menu__list-item">
+              <a href="./clientes.html">Ver clientes</a>
+            </li>
+            <li class="menu__list-item">
+              <a href="./clientes_agregar.html">Agregar cliente</a>
+            </li>
+          </ul>
+        </details>
+        <details class="menu__details">
+          <summary class="menu__title">
+            <i class="fas fa-user-clock"></i>
+            <p>PEDIDOS DE SERVICIO</p>
+          </summary>
+          <ul class="menu__list">
+            <li class="menu__list-item">
+              <a href="./pedidos.html">Ver pedidos</a>
+            </li>
+            <li class="menu__list-item">
+              <a href="./pedidos_agregar.html">Agregar pedido</a>
+            </li>
+          </ul>
+        </details>
+        <details class="menu__details">
+          <summary class="menu__title">
+            <i class="fas fa-file-alt"></i>
+            <p>DOCUMENTOS</p>
+          </summary>
+          <ul class="menu__list">
+            <li class="menu__list-item">
+              <a href="./documentos.html">Ver documentos</a>
+            </li>
+            <li class="menu__list-item">
+              <a href="./documentos_agregar.html">Agregar documento</a>
+            </li>
+            <li class="menu__list-item">
+              <a href="">Documentos archivados</a>
+            </li>
+          </ul>
+        </details>
+      </ul>
+    </section>
+    <div class="menu-bg"></div>
+    <script src="../utils/toggle_menu.js"></script>
+    <script src="../utils/contactos_editar.js"></script>
+  </body>
+</html>
