@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/components/Menu.scss";
+import { FaAddressBook, FaBook, FaUserClock, FaFileAlt } from "react-icons/fa";
 
 const Menu = () => {
+  useEffect(() => {
+    //Toggle menu
+    const $detailsList = document.querySelectorAll("details");
+
+    const expand = () => {
+      $detailsList.forEach(($detail) => {
+        $detail.removeAttribute("open");
+      });
+    };
+
+    $detailsList.forEach(($detail) => {
+      $detail.querySelector("summary").addEventListener("click", expand);
+    });
+  }, []);
+
   return (
     <>
       <section className="menu">
@@ -9,7 +25,7 @@ const Menu = () => {
         <ul className="menu__container">
           <details className="menu__container-details">
             <summary className="menu__container-details-title">
-              <i className="fas fa-address-book"></i>
+              <FaAddressBook className="fas" />
               <p>DIRECTORIO</p>
             </summary>
             <ul className="menu__list">
@@ -23,7 +39,7 @@ const Menu = () => {
           </details>
           <details className="menu__container-details">
             <summary className="menu__container-details-title">
-              <i className="fas fa-book"></i>
+              <FaBook className="fas" />
               <p>CLIENTES</p>
             </summary>
             <ul>
@@ -37,7 +53,7 @@ const Menu = () => {
           </details>
           <details className="menu__container-details">
             <summary className="menu__container-details-title">
-              <i className="fas fa-user-clock"></i>
+              <FaUserClock className="fas" />
               <p>PEDIDOS DE SERVICIO</p>
             </summary>
             <ul className="menu__list">
@@ -51,7 +67,7 @@ const Menu = () => {
           </details>
           <details className="menu__container-details">
             <summary className="menu__container-details-title">
-              <i className="fas fa-file-alt"></i>
+              <FaFileAlt className="fas" />
               <p>DOCUMENTOS</p>
             </summary>
             <ul className="menu__list">
@@ -68,7 +84,7 @@ const Menu = () => {
           </details>
         </ul>
       </section>
-      <div class="bg-image"></div>
+      <div className="bg-image"></div>
     </>
   );
 };
