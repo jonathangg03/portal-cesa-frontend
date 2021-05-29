@@ -1,13 +1,19 @@
 import React from "react";
 import "../styles/components/Search.scss";
 
-const Menu = () => {
+const Menu = ({ onSubmit, onChange }) => {
   return (
-    <section className="search">
+    <form className="search" onSubmit={onSubmit}>
       <h3>CRITERIO DE BUSQUEDA</h3>
-      <input type="text" name="search" id="search" />
-      <button type="button">Buscar Contacto</button>
-    </section>
+      <input
+        type="text"
+        name="search"
+        id="search"
+        onChange={onChange}
+        required
+      />
+      <button type="sumbit">Buscar Contacto</button>
+    </form>
   );
 };
 

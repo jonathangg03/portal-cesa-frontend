@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaPen } from "react-icons/fa";
 import Search from "../components/Search";
 import "../styles/pages/Contact.scss";
@@ -6,9 +6,35 @@ import useGetData from "../hooks/useGetData";
 
 const Contact = () => {
   const contact = useGetData("https://portal-cesa.vercel.app/api/contact");
+  const [searchValues, setSearchValues] = useState([]); //Resultados de busqueda
+  const [searchInputValue, setSearchInputValue] = useState(""); //Input de busqueda
+
+  useEffect(() => {
+    setSearchValues(contact);
+  }, [contact]);
+
+  const handleSearchChange = (event) => {
+    setSearchInputValue(event.target.value);
+  };
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    const newContacts = contact.filter((contactItem) => {
+      if (
+        contactItem.firstName
+          .toLowerCase()
+          .includes(searchInputValue.toLowerCase())
+      ) {
+        return contactItem;
+      }
+    });
+
+    setSearchValues(newContacts);
+  };
+
   return (
     <>
-      <Search />
+      <Search onChange={handleSearchChange} onSubmit={handleSearchSubmit} />
       <section className="contacts">
         <div className="contacts__table">
           <h4>Primer nombre</h4>
@@ -22,9 +48,9 @@ const Contact = () => {
           <h4>Extensión</h4>
           <h4>Editar</h4>
         </div>
-        {contact.map((contactItem) => {
+        {searchValues.map((contactItem) => {
           return (
-            <div className="contacts__table">
+            <div className="contacts__table" key={contactItem.id}>
               <p>{contactItem.firstName}</p>
               <p>{contactItem.secondName}</p>
               <p>{contactItem.firstLastname}</p>
