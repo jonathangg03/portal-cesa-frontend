@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from "react";
-import "../styles/pages/Contact.scss";
+import React from "react";
 import { FaPen } from "react-icons/fa";
-const App = () => {
-  const [contact, setContact] = useState([]);
-  useEffect(async () => {
-    const res = await fetch("https://portal-cesa.vercel.app/api/contact");
-    const contactData = await res.json();
-    const contacts = contactData.body;
-    setContact(contacts);
-  }, []);
+import Search from "../components/Search";
+import "../styles/pages/Contact.scss";
+import useGetData from "../hooks/useGetData";
+
+const Contact = () => {
+  const contact = useGetData("https://portal-cesa.vercel.app/api/contact");
   return (
     <>
-      <section className="search">
-        <h3>CRITERIO DE BUSQUEDA</h3>
-        <input type="text" name="search" id="search" />
-        <button type="button">Buscar Contacto</button>
-      </section>
+      <Search />
       <section className="contacts">
         <div className="contacts__table">
           <h4>Primer nombre</h4>
@@ -52,4 +45,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Contact;

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import "../styles/components/Menu.scss";
+import { Link } from "react-router-dom";
 import { FaAddressBook, FaBook, FaUserClock, FaFileAlt } from "react-icons/fa";
+import "../styles/components/Menu.scss";
 
 const Menu = () => {
   useEffect(() => {
@@ -30,10 +31,10 @@ const Menu = () => {
             </summary>
             <ul className="menu__list">
               <li className="menu__list-item">
-                <a href="./contactos.html">Ver contactos</a>
+                <Link to="/contact">Ver contactos</Link>
               </li>
               <li className="menu__list-item">
-                <a href="./contactos_agregar.html">Agregar contacto</a>
+                <Link to="/contact/new">Agregar contacto</Link>
               </li>
             </ul>
           </details>
@@ -44,10 +45,10 @@ const Menu = () => {
             </summary>
             <ul>
               <li className="menu__list-item">
-                <a href="./clientes.html">Ver clientes</a>
+                <Link to="/client">Ver clientes</Link>
               </li>
               <li className="menu__list-item">
-                <a href="./clientes_agregar.html">Agregar cliente</a>
+                <Link to="/client/new">Agregar cliente</Link>
               </li>
             </ul>
           </details>
@@ -58,10 +59,10 @@ const Menu = () => {
             </summary>
             <ul className="menu__list">
               <li className="menu__list-item">
-                <a href="./pedidos.html">Ver pedidos</a>
+                <Link to="/request">Ver pedidos</Link>
               </li>
               <li className="menu__list-item">
-                <a href="./pedidos_agregar.html">Agregar pedido</a>
+                <Link to="/request/new">Agregar pedido</Link>
               </li>
             </ul>
           </details>
@@ -72,13 +73,13 @@ const Menu = () => {
             </summary>
             <ul className="menu__list">
               <li className="menu__list-item">
-                <a href="./documentos.html">Ver documentos</a>
+                <Link to="/document">Ver documentos</Link>
               </li>
               <li className="menu__list-item">
-                <a href="./documentos_agregar.html">Agregar documento</a>
+                <Link to="/document/new">Agregar documento</Link>
               </li>
               <li className="menu__list-item">
-                <a href="">Documentos archivados</a>
+                <Link to="/document/archived">Documentos archivados</Link>
               </li>
             </ul>
           </details>
