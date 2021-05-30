@@ -20,6 +20,7 @@ h3 {
 .add_form-element-container label {
   padding-right: 15px;
   padding-bottom: 15px;
+  color: #9a9a9a;
 }
 
 .add_form-element-container label p {
@@ -32,7 +33,6 @@ h3 {
   height: 30px;
   margin-bottom: 5px;
   border: 1px solid #d6d5d5;
-  color: $gray;
 }
 
 .add__form-input:focus-visible {
@@ -52,4 +52,9 @@ button {
   color: white;
   border: none;
   border-radius: 5px;
+}
+
+.delete_button {
+  margin-top: 5px;
+  background-color: #d40044;
 }

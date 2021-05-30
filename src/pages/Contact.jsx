@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FaPen } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import Search from "../components/Search";
-import "../styles/pages/Contact.scss";
 import useGetData from "../hooks/useGetData";
+import "../styles/pages/Contact.scss";
 
 const Contact = () => {
   const contact = useGetData("https://portal-cesa.vercel.app/api/contact");
@@ -23,7 +24,8 @@ const Contact = () => {
       if (
         contactItem.firstName
           .toLowerCase()
-          .includes(searchInputValue.toLowerCase())
+          .includes(searchInputValue.toLowerCase()) ||
+        contactItem.tag.toLowerCase().includes(searchInputValue.toLowerCase())
       ) {
         return contactItem;
       }
@@ -60,9 +62,9 @@ const Contact = () => {
               <p>{contactItem.phone}</p>
               <p>{contactItem.cellphone}</p>
               <p>{contactItem.extension}</p>
-              <a href="">
+              <Link to={`/contact/${contactItem.id}/edit`}>
                 <FaPen />
-              </a>
+              </Link>
             </div>
           );
         })}

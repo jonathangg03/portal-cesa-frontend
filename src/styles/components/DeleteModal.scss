@@ -1,0 +1,32 @@
+.modal__cover {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  background-color: #00000061;
+  z-index: 3;
+  .modal__content {
+    width: 500px;
+    height: 175px;
+    display: flex;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    background-color: white;
+    h1 {
+      font-size: 1.8rem;
+    }
+    &-buttons-container {
+      display: flex;
+      .delete_button {
+        margin: 0;
+        margin-left: 10px;
+      }
+    }
+  }
+}

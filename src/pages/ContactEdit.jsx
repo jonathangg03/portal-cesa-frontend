@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import useSendData from "../hooks/useSendData";
+import useGetData from "../hooks/useGetData";
+import DeleteModal from "../components/DeleteModal";
 import "../styles/pages/New.scss";
 
-const ContactNew = () => {
+const ContactNew = ({ match }) => {
+  const contact = useGetData(
+    `https://portal-cesa.vercel.app/api/contact/${match.params.id}`
+  );
   const history = useHistory();
   const [formValues, setFormValues] = useState({
     firstName: "",
@@ -17,6 +22,13 @@ const ContactNew = () => {
     extension: "",
     tag: "",
   });
+  const [openModal, setOpenModal] = useState(false);
+
+  useEffect(() => {
+    if (contact[0]) {
+      setFormValues({ ...contact[0] });
+    }
+  }, [contact]);
 
   const handleFormChange = (event) => {
     setFormValues({
@@ -29,7 +41,7 @@ const ContactNew = () => {
     event.preventDefault();
     useSendData(
       "https://portal-cesa.vercel.app/api/contact",
-      "POST",
+      "PUT",
       formValues
     );
     setTimeout(() => {
@@ -37,6 +49,19 @@ const ContactNew = () => {
     }, 1000);
   };
 
+  const handleOpenModal = () => {
+    setOpenModal(!openModal);
+  };
+
+  const handleDelete = () => {
+    useSendData(
+      `https://portal-cesa.vercel.app/api/contact/${match.params.id}`,
+      "DELETE"
+    );
+    setTimeout(() => {
+      history.push("/contact");
+    }, 1000);
+  };
   return (
     <section className="add">
       <h3>AGREGAR UN NUEVO CONTACTO</h3>
@@ -173,10 +198,20 @@ const ContactNew = () => {
             />
           </label>
         </div>
-        <button type="submit" id="add__button">
-          Agregar Contacto
+        <button type="submit">Editar Contacto</button>
+        <button
+          type="button"
+          className="delete_button"
+          onClick={handleOpenModal}
+        >
+          Eliminar Contacto
         </button>
       </form>
+      <DeleteModal
+        opened={openModal}
+        handleCloseModal={handleOpenModal}
+        handleDelete={handleDelete}
+      />
     </section>
   );
 };

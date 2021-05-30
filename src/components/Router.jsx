@@ -10,6 +10,7 @@ import DocumentNew from "../pages/DocumentNew";
 import ClientNew from "../pages/ClientNew";
 import RequestNew from "../pages/RequestNew";
 import DocumentArchived from "../pages/DocumentArchived";
+import ContactEdit from "../pages/ContactEdit";
 
 const Router = () => {
   return (
@@ -26,6 +27,7 @@ const Router = () => {
           <Route exact path="/document/new" component={DocumentNew} />
           <Route exact path="/request/new" component={RequestNew} />
           <Route exact path="/document/archived" component={DocumentArchived} />
+          <Route exact path="/contact/:id/edit" component={ContactEdit} />
         </Switch>
       </Layout>
     </BrowserRouter>
