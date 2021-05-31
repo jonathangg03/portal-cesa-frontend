@@ -51,11 +51,11 @@ const ContactNew = ({ match }) => {
 
   const handleDelete = () => {
     useSendData(
-      `https://portal-cesa.vercel.app/api/contact/${match.params.id}`,
+      `https://portal-cesa.vercel.app/api/request/${match.params.id}`,
       "DELETE"
     );
     setTimeout(() => {
-      history.push("/contact");
+      history.push("/request");
     }, 1000);
   };
   return (
@@ -145,9 +145,21 @@ const ContactNew = ({ match }) => {
           </label>
         </div>
         <button type="submit" id="add__button">
-          Editar Contacto
+          Editar pedido
+        </button>
+        <button
+          type="button"
+          className="delete_button"
+          onClick={handleOpenModal}
+        >
+          Eliminar pedido
         </button>
       </form>
+      <DeleteModal
+        opened={openModal}
+        handleCloseModal={handleOpenModal}
+        handleDelete={handleDelete}
+      />
     </section>
   );
 };
