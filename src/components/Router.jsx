@@ -11,6 +11,7 @@ import ClientNew from "../pages/ClientNew";
 import RequestNew from "../pages/RequestNew";
 import DocumentArchived from "../pages/DocumentArchived";
 import ContactEdit from "../pages/ContactEdit";
+import RequestEdit from "../pages/RequestEdit";
 
 const Router = () => {
   return (
@@ -28,6 +29,7 @@ const Router = () => {
           <Route exact path="/request/new" component={RequestNew} />
           <Route exact path="/document/archived" component={DocumentArchived} />
           <Route exact path="/contact/:id/edit" component={ContactEdit} />
+          <Route exact path="/request/:id/edit" component={RequestEdit} />
         </Switch>
       </Layout>
     </BrowserRouter>
