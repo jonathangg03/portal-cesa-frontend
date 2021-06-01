@@ -36,15 +36,15 @@ const Client = () => {
   return (
     <>
       <Search onChange={handleSearchChange} onSubmit={handleSearchSubmit} />
-      <section className="contacts">
-        <div className="contacts__table">
+      <section className="client">
+        <div className="client__table">
           <h4>Cliente</h4>
           <h4>Detalle</h4>
           <h4>Editar</h4>
         </div>
         {searchValues.map((clientItem) => {
           return (
-            <div className="contacts__table" key={clientItem.id}>
+            <div className="client__table" key={clientItem.id}>
               <p>{clientItem.name}</p>
               <p>
                 <Link to={`/client/${clientItem.id}`}>Ver información</Link>

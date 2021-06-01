@@ -6,9 +6,10 @@
   &__table {
     padding: 20px 10px 10px;
     display: grid;
-    grid-template-columns:
-      repeat(4, 1fr)
-      2fr 0.5fr repeat(2, 1fr) repeat(2, 0.5fr);
+    grid-template-columns: repeat(4, 1fr) 2fr 0.5fr repeat(2, 1fr) repeat(
+        2,
+        0.5fr
+      );
     border: 1px solid $border-sections;
     a {
       color: blue;

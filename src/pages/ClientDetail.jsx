@@ -8,24 +8,19 @@ const ClientDetail = ({ match }) => {
 
   useEffect(() => {
     if (client[0]) {
-      setDetails(JSON.parse(client[0].detail));
+      const newA = client[0].detail.replace("<body>", "");
+      const newB = newA.replace("</body>", "");
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(newB, "text/html");
+      setDetails(doc);
+      console.log(doc.body);
     }
+    // if (client[0]) {
+    //   setDetails(JSON.parse(client[0].detail));
+    // }
   }, [client]);
 
-  return (
-    <>
-      <h1>Contact</h1>
-      {console.log(details)}
-      {details.ops &&
-        details.ops.map((detail) => {
-          return (
-            <div>
-              <p>{detail.insert}</p>
-            </div>
-          );
-        })}
-    </>
-  );
+  return <>{details}</>;
 };
 
 export default ClientDetail;
