@@ -8,6 +8,7 @@ import Request from "../pages/Request";
 import ContactNew from "../pages/ContactNew";
 import DocumentNew from "../pages/DocumentNew";
 import ClientNew from "../pages/ClientNew";
+import ClientDetail from "../pages/ClientDetail";
 import RequestNew from "../pages/RequestNew";
 import DocumentArchived from "../pages/DocumentArchived";
 import ContactEdit from "../pages/ContactEdit";
@@ -25,6 +26,7 @@ const Router = () => {
           <Route exact path="/request" component={Request} />
           <Route exact path="/contact/new" component={ContactNew} />
           <Route exact path="/client/new" component={ClientNew} />
+          <Route exact path="/client/:id" component={ClientDetail} />
           <Route exact path="/document/new" component={DocumentNew} />
           <Route exact path="/request/new" component={RequestNew} />
           <Route exact path="/document/archived" component={DocumentArchived} />
