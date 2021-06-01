@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import useSendData from "../hooks/useSendData";
+import Editor from "../components/Editor";
 import "../styles/pages/New.scss";
 
 const ClientNew = () => {
@@ -51,6 +52,7 @@ const ClientNew = () => {
         <button type="submit" id="add__button">
           Agregar Cliente
         </button>
+        <Editor />
       </form>
     </section>
   );
