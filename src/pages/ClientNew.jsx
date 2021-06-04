@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import QuillEditor from "quill";
 import useSendData from "../hooks/useSendData";
 import "../styles/pages/New.scss";
+import "../styles/components/EditorComponent.scss";
 
 const ClientNew = () => {
   const history = useHistory();
