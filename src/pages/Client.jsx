@@ -49,7 +49,7 @@ const Client = () => {
               <p>
                 <Link to={`/client/${clientItem.id}`}>Ver información</Link>
               </p>
-              <Link to={`/contact/${clientItem.id}/edit`}>
+              <Link to={`/client/${clientItem.id}/edit`}>
                 <FaPen />
               </Link>
             </div>

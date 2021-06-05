@@ -13,6 +13,7 @@ import RequestNew from "../pages/RequestNew";
 import DocumentArchived from "../pages/DocumentArchived";
 import ContactEdit from "../pages/ContactEdit";
 import RequestEdit from "../pages/RequestEdit";
+import ClientEdit from "../pages/ClientEdit";
 
 const Router = () => {
   return (
@@ -27,6 +28,7 @@ const Router = () => {
           <Route exact path="/contact/new" component={ContactNew} />
           <Route exact path="/client/new" component={ClientNew} />
           <Route exact path="/client/:id" component={ClientDetail} />
+          <Route exact path="/client/:id/edit" component={ClientEdit} />
           <Route exact path="/document/new" component={DocumentNew} />
           <Route exact path="/request/new" component={RequestNew} />
           <Route exact path="/document/archived" component={DocumentArchived} />

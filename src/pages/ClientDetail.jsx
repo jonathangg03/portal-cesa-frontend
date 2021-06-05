@@ -6,7 +6,6 @@ import useGetData from "../hooks/useGetData";
 import "../styles/pages/ClientDetail.scss";
 
 const ClientDetail = ({ match }) => {
-  const [details, setDetails] = useState("");
   let deltaOps;
   let converter;
   const [html, setHtml] = useState("");
@@ -17,7 +16,6 @@ const ClientDetail = ({ match }) => {
 
   useEffect(() => {
     if (client[0]) {
-      setDetails(JSON.parse(client[0].detail));
       deltaOps = JSON.parse(client[0].detail);
       const cfg = {
         encodeHtml: true,
@@ -34,7 +32,7 @@ const ClientDetail = ({ match }) => {
       </div>
       <div className="clientDetail__client-container">
         <p>{client[0] && client[0].name}</p>
-        <Link to="">
+        <Link to={`/client/${match.params.id}/edit`}>
           <FaPen />
           <span>Editar cliente</span>
         </Link>

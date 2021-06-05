@@ -9,7 +9,7 @@ const DeleteModal = ({ opened, handleCloseModal, handleDelete }) => {
   return ReactDOM.createPortal(
     <div className="modal__cover">
       <div className="modal__content">
-        <h1>¿Estás seguro que deseas elminar este contacto?</h1>
+        <h1>¿Estás seguro que deseas elminar este registro?</h1>
         <div className="modal__content-buttons-container">
           <button onClick={handleCloseModal}>Cancelar</button>
           <button onClick={handleDelete} className="delete_button">
