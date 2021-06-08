@@ -21,6 +21,11 @@ h3 {
   padding-right: 15px;
   padding-bottom: 15px;
   color: #9a9a9a;
+  .file {
+    border: none;
+    display: flex;
+    align-items: center;
+  }
 }
 
 .add_form-element-container label p {
