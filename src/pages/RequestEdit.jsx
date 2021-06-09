@@ -7,7 +7,7 @@ import "../styles/pages/New.scss";
 
 const ContactNew = ({ match }) => {
   const contact = useGetData(
-    `https://portal-cesa.vercel.app/api/request/${match.params.id}`
+    `http://localhost:3000/api/request/${match.params.id}`
   );
   const history = useHistory();
   const [formValues, setFormValues] = useState({
@@ -35,11 +35,7 @@ const ContactNew = ({ match }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    useSendData(
-      "https://portal-cesa.vercel.app/api/request",
-      "PUT",
-      formValues
-    );
+    useSendData("http://localhost:3000/api/request", "PUT", formValues);
     setTimeout(() => {
       history.push("/request");
     }, 1000);
@@ -51,7 +47,7 @@ const ContactNew = ({ match }) => {
 
   const handleDelete = () => {
     useSendData(
-      `https://portal-cesa.vercel.app/api/request/${match.params.id}`,
+      `http://localhost:3000/api/request/${match.params.id}`,
       "DELETE"
     );
     setTimeout(() => {

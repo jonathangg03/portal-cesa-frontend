@@ -48,7 +48,7 @@ const ClientNew = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    useSendData("https://portal-cesa.vercel.app/api/client", "POST", {
+    useSendData("http://localhost:3000/api/client", "POST", {
       name: name,
       detail: JSON.stringify({ ...quill.getContents() }),
     });

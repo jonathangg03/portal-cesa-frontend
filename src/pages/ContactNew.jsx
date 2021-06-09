@@ -27,11 +27,7 @@ const ContactNew = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    useSendData(
-      "https://portal-cesa.vercel.app/api/contact",
-      "POST",
-      formValues
-    );
+    useSendData("http://localhost:3000/api/contact", "POST", formValues);
     setTimeout(() => {
       history.push("/contact");
     }, 1000);

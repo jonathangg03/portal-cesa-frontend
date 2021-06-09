@@ -6,7 +6,7 @@ import useGetData from "../hooks/useGetData";
 import "../styles/pages/Client.scss";
 
 const Client = () => {
-  const client = useGetData("https://portal-cesa.vercel.app/api/client");
+  const client = useGetData("http://localhost:3000/api/client");
   const [searchValues, setSearchValues] = useState([]); //Resultados de busqueda
   const [searchInputValue, setSearchInputValue] = useState(""); //Input de busqueda
 

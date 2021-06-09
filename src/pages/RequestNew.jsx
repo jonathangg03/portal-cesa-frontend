@@ -23,11 +23,7 @@ const RequestNew = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    useSendData(
-      "https://portal-cesa.vercel.app/api/request",
-      "POST",
-      formValues
-    );
+    useSendData("http://localhost:3000/api/request", "POST", formValues);
     setTimeout(() => {
       history.push("/request");
     }, 1500);

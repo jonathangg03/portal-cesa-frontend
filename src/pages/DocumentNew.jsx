@@ -7,7 +7,6 @@ const DocumentNew = () => {
   const history = useHistory();
   const [formValues, setFormValues] = useState({
     name: "",
-    document: "",
   });
 
   const handleFormChange = (event) => {
@@ -20,23 +19,21 @@ const DocumentNew = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    useSendData(
-      "https://portal-cesa.vercel.app/api/document",
-      "POST",
-      formValues
-    );
+    console.log(formValues);
+    useSendData("http://localhost:3000/api/document", "POST", formValues);
     setTimeout(() => {
       history.push("/document");
-    }, 1000);
+    }, 1500);
   };
 
   return (
     <section className="add">
       <h3>AGREGAR UN NUEVO DOCUMENTO</h3>
       <form
-        action=""
+        action="/files"
         id="add__form"
         className="add__form"
+        encType="multipart/form-data"
         onSubmit={handleFormSubmit}
       >
         <div className="add_form-element-container">
@@ -56,13 +53,10 @@ const DocumentNew = () => {
           <label htmlFor="document">
             <p>SELECCIONE UN ARCHIVO</p>
             <input
-              onChange={handleFormChange}
               type="file"
               name="document"
               id="document"
-              placeholder="Segundo nombre"
               className="add__form-input file"
-              value={formValues.document}
             />
           </label>
         </div>

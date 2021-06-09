@@ -11,7 +11,7 @@ const ClientDetail = ({ match }) => {
   const [html, setHtml] = useState("");
 
   let client = useGetData(
-    `https://portal-cesa.vercel.app/api/client/${match.params.id}`
+    `http://localhost:3000/api/client/${match.params.id}`
   );
 
   useEffect(() => {

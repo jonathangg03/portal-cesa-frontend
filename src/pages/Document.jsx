@@ -4,7 +4,7 @@ import useGetData from "../hooks/useGetData";
 import "../styles/pages/Document.scss";
 
 const Document = () => {
-  const searchValues = [1, 2];
+  const document = useGetData("http://localhost:3000/api/document");
   return (
     <>
       <section className="document">
@@ -15,13 +15,15 @@ const Document = () => {
           <h4>SUBIDO POR</h4>
           <h4>ARCHIVAR</h4>
         </div>
-        {searchValues.map((documentItem) => {
+        {document.map((documentItem) => {
           return (
-            <div className="document__table" key={documentItem}>
-              <a>Rol de consultoría</a>
-              <p>123456</p>
-              <p>06-Jan-2021 11:24 am</p>
-              <p>dgarcia@grupocesa.com</p>
+            <div className="document__table" key={documentItem.id}>
+              <a href={documentItem.document} target="_blank">
+                {documentItem.name}
+              </a>
+              <p>{documentItem.size}</p>
+              <p>{documentItem.date}</p>
+              <p>{documentItem.user}</p>
               <button type="button">Archivar</button>
             </div>
           );

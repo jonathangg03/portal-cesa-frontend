@@ -9,7 +9,7 @@ import "../styles/components/EditorComponent.scss";
 
 const ClientNew = ({ match }) => {
   const client = useGetData(
-    `https://portal-cesa.vercel.app/api/client/${match.params.id}`
+    `http://localhost:3000/api/client/${match.params.id}`
   );
   const history = useHistory();
   const [openModal, setOpenModal] = useState(false);
@@ -60,7 +60,7 @@ const ClientNew = ({ match }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    useSendData("https://portal-cesa.vercel.app/api/client", "PUT", {
+    useSendData("http://localhost:3000/api/client", "PUT", {
       id: match.params.id,
       name: name,
       detail: JSON.stringify({ ...quill.getContents() }),
@@ -76,7 +76,7 @@ const ClientNew = ({ match }) => {
 
   const handleDelete = () => {
     useSendData(
-      `https://portal-cesa.vercel.app/api/client/${match.params.id}`,
+      `http://localhost:3000/api/client/${match.params.id}`,
       "DELETE"
     );
     setTimeout(() => {
