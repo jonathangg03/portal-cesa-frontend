@@ -7,14 +7,16 @@ const DocumentNew = () => {
   const history = useHistory();
   const [formValues, setFormValues] = useState({
     name: "",
+    document: "",
   });
 
   const handleFormChange = (event) => {
-    console.log(event);
-    setFormValues({
-      ...formValues,
-      [event.target.name]: event.target.value,
-    });
+    if (event.target.name === "name") {
+      setFormValues({
+        ...formValues,
+        name: event.target.value,
+      });
+    }
   };
 
   const handleFormSubmit = (event) => {
@@ -53,11 +55,13 @@ const DocumentNew = () => {
           <label htmlFor="document">
             <p>SELECCIONE UN ARCHIVO</p>
             <input
+              onChange={handleFormChange}
               type="file"
               name="document"
               id="document"
               className="add__form-input file"
             />
+            <p>Sí envía un PDF, se abrira automaticamente en otra pestaña</p>
           </label>
         </div>
         <button type="submit" id="add__button">
