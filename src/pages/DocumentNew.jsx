@@ -5,9 +5,9 @@ import "../styles/pages/New.scss";
 
 const DocumentNew = () => {
   const history = useHistory();
+  const [file, setFile] = useState(null);
   const [formValues, setFormValues] = useState({
     name: "",
-    document: "",
   });
 
   const handleFormChange = (event) => {
@@ -19,10 +19,23 @@ const DocumentNew = () => {
     }
   };
 
+  const handleFileChange = (e) => {
+    console.log(e.target.files[0]);
+    setFile(e.target.files[0]);
+  };
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     console.log(formValues);
-    useSendData("http://localhost:3000/api/document", "POST", formValues);
+    useSendData(
+      "http://localhost:3000/api/document",
+      "POST",
+      {
+        ...formValues,
+        file,
+      },
+      "multipart/form-data"
+    );
     setTimeout(() => {
       history.push("/document");
     }, 1500);
@@ -52,13 +65,13 @@ const DocumentNew = () => {
               value={formValues.name}
             />
           </label>
-          <label htmlFor="document">
+          <label htmlFor="file">
             <p>SELECCIONE UN ARCHIVO</p>
             <input
-              onChange={handleFormChange}
+              onChange={handleFileChange}
               type="file"
-              name="document"
-              id="document"
+              name="file"
+              id="file"
               className="add__form-input file"
             />
             <p>Sí envía un PDF, se abrira automaticamente en otra pestaña</p>

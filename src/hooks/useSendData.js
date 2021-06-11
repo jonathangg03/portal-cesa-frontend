@@ -1,10 +1,10 @@
 import React from "react";
 
-const useSendData = async (API, method, dataObj) => {
+const useSendData = async (API, method, dataObj, ct) => {
   const fetchOptions = {
     method,
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": ct || "application/json",
     },
     body: JSON.stringify(dataObj),
   };
