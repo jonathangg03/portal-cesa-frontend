@@ -31,13 +31,10 @@ const DocumentNew = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(fileElement);
-    // console.log(formValues);
-    // useSendData("http://localhost:3000/api/document", "POST", fileElement);
     await axios.post("http://localhost:3000/api/document", fileElement);
-    // setTimeout(() => {
-    //   history.push("/document");
-    // }, 1500);
+    setTimeout(() => {
+      history.push("/document");
+    }, 1500);
   };
 
   return (
