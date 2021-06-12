@@ -1,10 +1,21 @@
 import React from "react";
-import Search from "../components/Search";
+import { useHistory } from "react-router-dom";
 import useGetData from "../hooks/useGetData";
+import useSendData from "../hooks/useSendData";
 import "../styles/pages/Document.scss";
 
 const Document = () => {
   const document = useGetData("http://localhost:3000/api/document");
+  const history = useHistory("");
+
+  const handleArchive = (e) => {
+    const archivedEl = document.filter((el) => el.id === e.target.id)[0];
+    archivedEl.archived = 1;
+    console.log(archivedEl);
+    useSendData("http://localhost:3000/api/document", "PUT", archivedEl);
+    setTimeout(history.push("/document"), 1000);
+  };
+
   return (
     <>
       <section className="document">
@@ -16,17 +27,25 @@ const Document = () => {
           <h4>ARCHIVAR</h4>
         </div>
         {document.map((documentItem) => {
-          return (
-            <div className="document__table" key={documentItem.id}>
-              <a href={documentItem.document} target="_blank">
-                {documentItem.name}
-              </a>
-              <p>{documentItem.size}</p>
-              <p>{documentItem.date}</p>
-              <p>{documentItem.user}</p>
-              <button type="button">Archivar</button>
-            </div>
-          );
+          if (!documentItem.archived) {
+            return (
+              <div className="document__table" key={documentItem.id}>
+                <a href={documentItem.document} target="_blank">
+                  {documentItem.name}
+                </a>
+                <p>{documentItem.size}</p>
+                <p>{documentItem.date}</p>
+                <p>{documentItem.user}</p>
+                <button
+                  type="button"
+                  onClick={handleArchive}
+                  id={documentItem.id}
+                >
+                  Archivar
+                </button>
+              </div>
+            );
+          }
         })}
       </section>
     </>

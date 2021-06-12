@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "../styles/components/DeleteModal.scss";
 
-const DeleteModal = ({ opened, handleCloseModal, handleDelete }) => {
+const DeleteModal = ({ opened, handleCloseModal, handleDelete, id }) => {
   if (!opened) {
     return null;
   }
@@ -12,7 +12,7 @@ const DeleteModal = ({ opened, handleCloseModal, handleDelete }) => {
         <h1>¿Estás seguro que deseas elminar este registro?</h1>
         <div className="modal__content-buttons-container">
           <button onClick={handleCloseModal}>Cancelar</button>
-          <button onClick={handleDelete} className="delete_button">
+          <button onClick={handleDelete} className="delete_button" id={id}>
             Eliminar
           </button>
         </div>
