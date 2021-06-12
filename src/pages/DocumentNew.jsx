@@ -6,35 +6,29 @@ import "../styles/pages/New.scss";
 
 const DocumentNew = () => {
   const history = useHistory();
-  // const [formValues, setFormValues] = useState({
-  //   name: "",
-  // });
+  const [name, setName] = useState("");
   const [fileElement, setFileElement] = useState(null);
 
-  const handleFormChange = (event) => {
-    // if (event.target.name === "name") {
-    //   setFormValues({
-    //     ...formValues,
-    //     name: event.target.value,
-    //   });
-    // }
+  const handleNameChange = (event) => {
+    setName(event.target.value);
   };
 
-  const handleFileChange = (e) => {
-    if (e.target.files) {
-      console.log(e.target.files[0]);
-      const fd = new FormData();
-      fd.append("fileD", e.target.files[0]);
-      setFileElement(fd);
-    }
-  };
+  const handleFileChange = (e) => {};
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    await axios.post("http://localhost:3000/api/document", fileElement);
-    setTimeout(() => {
-      history.push("/document");
-    }, 1500);
+
+    if (event.target[1].files) {
+      const fd = new FormData();
+      fd.append("name", event.target[0].value);
+      fd.append("fileD", event.target[1].files[0]);
+      setFileElement(fd);
+
+      await axios.post("http://localhost:3000/api/document", fd);
+      setTimeout(() => {
+        history.push("/document");
+      }, 1500);
+    }
   };
 
   return (
@@ -49,24 +43,23 @@ const DocumentNew = () => {
         onSubmit={handleFormSubmit}
       >
         <div className="add_form-element-container">
-          {/*          <label htmlFor="name">
+          <label htmlFor="name">
             <p>TITULO DEL DOCUMENTO</p>
-<input
-              onChange={handleFormChange}
+            <input
               type="text"
               name="name"
               id="name"
               placeholder="Primer nombre"
               required
               className="add__form-input"
-              value={formValues.name}
             />
-</label>*/}
+          </label>
           <label htmlFor="file">
             <p>SELECCIONE UN ARCHIVO</p>
             <input
               type="file"
               name="fileD"
+              required
               onChange={handleFileChange}
               id="file"
               className="add__form-input file"
