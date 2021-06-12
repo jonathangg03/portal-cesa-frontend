@@ -22,7 +22,7 @@ const Menu = () => {
   return (
     <>
       <section className="menu">
-        <h1>PORTAL CESA</h1>
+        <h2>PORTAL CESA</h2>
         <ul className="menu__container">
           <details className="menu__container-details">
             <summary className="menu__container-details-title">

@@ -38,36 +38,78 @@ const Contact = () => {
     <>
       <Search onChange={handleSearchChange} onSubmit={handleSearchSubmit} />
       <section className="contacts">
-        <div className="contacts__table">
-          <h4>Primer nombre</h4>
-          <h4>Segundo nombre</h4>
-          <h4>Apellido paterno</h4>
-          <h4>Apellido materno</h4>
-          <h4>Correo</h4>
-          <h4>Prefijo</h4>
-          <h4>Teléfono</h4>
-          <h4>Celular</h4>
-          <h4>Extensión</h4>
-          <h4>Editar</h4>
-        </div>
-        {searchValues.map((contactItem) => {
-          return (
-            <div className="contacts__table" key={contactItem.id}>
-              <p>{contactItem.firstName}</p>
-              <p>{contactItem.secondName}</p>
-              <p>{contactItem.firstLastname}</p>
-              <p>{contactItem.secondLastname}</p>
-              <p>{contactItem.email}</p>
-              <p>{contactItem.prefix}</p>
-              <p>{contactItem.phone}</p>
-              <p>{contactItem.cellphone}</p>
-              <p>{contactItem.extension}</p>
-              <Link to={`/contact/${contactItem.id}/edit`}>
-                <FaPen />
-              </Link>
+        <div className="container-fluid">
+          <div className="row contacts__table">
+            <div className="col">
+              <h5>Primer nombre</h5>
             </div>
-          );
-        })}
+            <div className="col">
+              <h5>Segundo nombre</h5>
+            </div>
+            <div className="col">
+              <h5>Apellido paterno</h5>
+            </div>
+            <div className="col">
+              <h5>Apellido materno</h5>
+            </div>
+            <div className="col-2">
+              <h5>Correo</h5>
+            </div>
+            <div className="col">
+              <h5>Prefijo</h5>
+            </div>
+            <div className="col">
+              <h5>Teléfono</h5>
+            </div>
+            <div className="col">
+              <h5>Celular</h5>
+            </div>
+            <div className="col">
+              <h5>Extensión</h5>
+            </div>
+            <div className="col text-center">
+              <h5>Editar</h5>
+            </div>
+          </div>
+          {searchValues.map((contactItem) => {
+            return (
+              <div className="row contacts__table" key={contactItem.id}>
+                <div className="col fs-5">
+                  <p>{contactItem.firstName}</p>
+                </div>
+                <div className="col fs-5">
+                  <p>{contactItem.secondName}</p>
+                </div>
+                <div className="col fs-5">
+                  <p>{contactItem.firstLastname}</p>
+                </div>
+                <div className="col fs-5">
+                  <p>{contactItem.secondLastname}</p>
+                </div>
+                <div className="col-2 fs-5">
+                  <p>{contactItem.email}</p>
+                </div>
+                <div className="col fs-5">
+                  <p>{contactItem.prefix}</p>
+                </div>
+                <div className="col fs-5">
+                  <p>{contactItem.phone}</p>
+                </div>
+                <div className="col fs-5">
+                  <p>{contactItem.cellphone}</p>
+                </div>
+                <div className="col fs-5">
+                  <p>{contactItem.extension}</p>
+                </div>
+                <div className="col text-center">
+                  <Link to={`/contact/${contactItem.id}/edit`}>
+                    <FaPen />
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </section>
     </>
   );
