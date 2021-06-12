@@ -1,60 +1,60 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import useSendData from "../hooks/useSendData";
+import axios from "axios";
 import "../styles/pages/New.scss";
 
 const DocumentNew = () => {
   const history = useHistory();
-  const [file, setFile] = useState(null);
-  const [formValues, setFormValues] = useState({
-    name: "",
-  });
+  // const [formValues, setFormValues] = useState({
+  //   name: "",
+  // });
+  const [fileElement, setFileElement] = useState(null);
 
   const handleFormChange = (event) => {
-    if (event.target.name === "name") {
-      setFormValues({
-        ...formValues,
-        name: event.target.value,
-      });
-    }
+    // if (event.target.name === "name") {
+    //   setFormValues({
+    //     ...formValues,
+    //     name: event.target.value,
+    //   });
+    // }
   };
 
   const handleFileChange = (e) => {
-    console.log(e.target.files[0]);
-    setFile(e.target.files[0]);
+    if (e.target.files) {
+      console.log(e.target.files[0]);
+      const fd = new FormData();
+      fd.append("fileD", e.target.files[0]);
+      setFileElement(fd);
+    }
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formValues);
-    useSendData(
-      "http://localhost:3000/api/document",
-      "POST",
-      {
-        ...formValues,
-        file,
-      },
-      "multipart/form-data"
-    );
-    setTimeout(() => {
-      history.push("/document");
-    }, 1500);
+    console.log(fileElement);
+    // console.log(formValues);
+    // useSendData("http://localhost:3000/api/document", "POST", fileElement);
+    await axios.post("http://localhost:3000/api/document", fileElement);
+    // setTimeout(() => {
+    //   history.push("/document");
+    // }, 1500);
   };
 
   return (
     <section className="add">
       <h3>AGREGAR UN NUEVO DOCUMENTO</h3>
       <form
-        action="/files"
+        action="/api/document"
+        method="POST"
+        encType="multipart/form-data"
         id="add__form"
         className="add__form"
-        encType="multipart/form-data"
         onSubmit={handleFormSubmit}
       >
         <div className="add_form-element-container">
-          <label htmlFor="name">
+          {/*          <label htmlFor="name">
             <p>TITULO DEL DOCUMENTO</p>
-            <input
+<input
               onChange={handleFormChange}
               type="text"
               name="name"
@@ -64,13 +64,13 @@ const DocumentNew = () => {
               className="add__form-input"
               value={formValues.name}
             />
-          </label>
+</label>*/}
           <label htmlFor="file">
             <p>SELECCIONE UN ARCHIVO</p>
             <input
-              onChange={handleFileChange}
               type="file"
-              name="file"
+              name="fileD"
+              onChange={handleFileChange}
               id="file"
               className="add__form-input file"
             />
