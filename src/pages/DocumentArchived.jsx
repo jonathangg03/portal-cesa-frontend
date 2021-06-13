@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import useGetData from "../hooks/useGetData";
 import useSendData from "../hooks/useSendData";
 import DeleteModal from "../components/DeleteModal";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/pages/Document.scss";
 
 const DocumentArchived = () => {
