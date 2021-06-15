@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
+import Signup from "../pages/Signup";
 import Document from "../pages/Document";
 import Client from "../pages/Client";
 import Request from "../pages/Request";
@@ -21,6 +22,7 @@ const Router = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login} />
+        <Route exact path="/signup" component={Signup} />
         <Layout>
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/client" component={Client} />

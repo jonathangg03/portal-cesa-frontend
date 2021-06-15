@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 import axios from "axios";
 import "../styles/pages/Login.scss";
 
-const Login = () => {
-  // const history = useHistory("");
+const Signup = () => {
+  const history = useHistory("");
   const [formValues, setFormValues] = useState({
+    name: "",
     email: "",
     password: "",
   });
-
-  const [jwt, setJwt] = useState("");
 
   const handleFormValues = (e) => {
     setFormValues({
@@ -19,28 +19,31 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const result = await await axios.post(
-      "http://localhost:3000/api/auth",
-      formValues
-    );
-    console.log(result);
-    if (result) {
-      setJwt(result);
-    }
+    axios
+      .post("http://localhost:3000/api/user", formValues)
+      .then(() => history.push("/login"));
   };
 
   return (
     <div className="login">
       <h1 className="login__title">Portal Grupo CESA</h1>
       <div className="login__form">
-        <p className="login__form-title">Inicio de sesión</p>
+        <p className="login__form-title">Registro</p>
         <form
           action=""
           className="login__form-container"
           onSubmit={handleSubmit}
         >
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Nombre"
+            required
+            onChange={handleFormValues}
+          />
           <input
             type="email"
             name="email"
@@ -57,13 +60,12 @@ const Login = () => {
             required
             onChange={handleFormValues}
           />
-          <button type="submit">Ingresar</button>
+          <button type="submit">Registrarse</button>
         </form>
-        {jwt && <p>Usuario o contraseña invalidos</p>}
-        <Link to="/signup">Registrarse</Link>
+        <Link to="/">Iniciar sesion</Link>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Signup;
