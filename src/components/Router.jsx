@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Contact from "../pages/Contact";
+import Login from "../pages/Login";
 import Document from "../pages/Document";
 import Client from "../pages/Client";
 import Request from "../pages/Request";
@@ -18,9 +19,9 @@ import ClientEdit from "../pages/ClientEdit";
 const Router = () => {
   return (
     <BrowserRouter>
-      <Layout>
-        <Switch>
-          <Route exact path="/" component={Contact} />
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Layout>
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/client" component={Client} />
           <Route exact path="/document" component={Document} />
@@ -34,8 +35,8 @@ const Router = () => {
           <Route exact path="/document/archived" component={DocumentArchived} />
           <Route exact path="/contact/:id/edit" component={ContactEdit} />
           <Route exact path="/request/:id/edit" component={RequestEdit} />
-        </Switch>
-      </Layout>
+        </Layout>
+      </Switch>
     </BrowserRouter>
   );
 };
