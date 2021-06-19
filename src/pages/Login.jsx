@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import "../styles/pages/Login.scss";
 
@@ -10,7 +10,8 @@ const Login = () => {
     password: "",
   });
 
-  const [jwt, setJwt] = useState("");
+  const [jwt, setJwt] = useState(true);
+  const history = useHistory("");
 
   const handleFormValues = (e) => {
     setFormValues({
@@ -21,13 +22,19 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await await axios.post(
+    const result = await axios.post(
       "http://localhost:3000/api/auth",
       formValues
     );
-    console.log(result);
-    if (result) {
-      setJwt(result);
+    if (result.data.body) {
+      console.log(result.data.body);
+      setJwt(result.data.body);
+      localStorage.setItem("session", result.data.body);
+      // setTimeout(location.reload(), 1000);
+    }
+    if (!result.data.body.length > 0) {
+      console.log(false);
+      setJwt(false);
     }
   };
 
@@ -59,7 +66,7 @@ const Login = () => {
           />
           <button type="submit">Ingresar</button>
         </form>
-        {jwt && <p>Usuario o contraseña invalidos</p>}
+        {!jwt && <p>Usuario o contraseña invalidos</p>}
         <Link to="/signup">Registrarse</Link>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Contact from "../pages/Contact";
@@ -16,28 +16,50 @@ import DocumentArchived from "../pages/DocumentArchived";
 import ContactEdit from "../pages/ContactEdit";
 import RequestEdit from "../pages/RequestEdit";
 import ClientEdit from "../pages/ClientEdit";
+import NotFound from "../pages/NotFound";
 
 const Router = () => {
+  const [session, setSession] = useState(null);
+
+  useState(() => {
+    const sessionValue = localStorage.getItem("session");
+    if (sessionValue) {
+      setSession(sessionValue);
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <Layout>
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/client" component={Client} />
-          <Route exact path="/document" component={Document} />
-          <Route exact path="/request" component={Request} />
-          <Route exact path="/contact/new" component={ContactNew} />
-          <Route exact path="/client/new" component={ClientNew} />
-          <Route exact path="/client/:id" component={ClientDetail} />
-          <Route exact path="/client/:id/edit" component={ClientEdit} />
-          <Route exact path="/document/new" component={DocumentNew} />
-          <Route exact path="/request/new" component={RequestNew} />
-          <Route exact path="/document/archived" component={DocumentArchived} />
-          <Route exact path="/contact/:id/edit" component={ContactEdit} />
-          <Route exact path="/request/:id/edit" component={RequestEdit} />
-        </Layout>
+        {!session && (
+          <>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route component={NotFound} />
+          </>
+        )}
+        {session && (
+          <Layout>
+            <Route exact path="/" component={Contact} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/client" component={Client} />
+            <Route exact path="/document" component={Document} />
+            <Route exact path="/request" component={Request} />
+            <Route exact path="/contact/new" component={ContactNew} />
+            <Route exact path="/client/new" component={ClientNew} />
+            <Route exact path="/client/:id" component={ClientDetail} />
+            <Route exact path="/client/:id/edit" component={ClientEdit} />
+            <Route exact path="/document/new" component={DocumentNew} />
+            <Route exact path="/request/new" component={RequestNew} />
+            <Route
+              exact
+              path="/document/archived"
+              component={DocumentArchived}
+            />
+            <Route exact path="/contact/:id/edit" component={ContactEdit} />
+            <Route exact path="/request/:id/edit" component={RequestEdit} />
+          </Layout>
+        )}
       </Switch>
     </BrowserRouter>
   );
