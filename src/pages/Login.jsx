@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/pages/Login.scss";
 
@@ -11,7 +11,6 @@ const Login = () => {
   });
 
   const [jwt, setJwt] = useState(true);
-  const history = useHistory("");
 
   const handleFormValues = (e) => {
     setFormValues({
@@ -26,13 +25,13 @@ const Login = () => {
       "http://localhost:3000/api/auth",
       formValues
     );
-    if (result.data.body) {
-      console.log(result.data.body);
+    console.log(result.data.body);
+    if (result.data.body.length > 0) {
       setJwt(result.data.body);
       localStorage.setItem("session", result.data.body);
-      // setTimeout(location.reload(), 1000);
-    }
-    if (!result.data.body.length > 0) {
+      localStorage.setItem("email", formValues.email);
+      setTimeout(location.reload(), 1000);
+    } else {
       console.log(false);
       setJwt(false);
     }

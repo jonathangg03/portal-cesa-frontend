@@ -22,6 +22,7 @@ const DocumentNew = () => {
       const fd = new FormData();
       fd.append("name", event.target[0].value);
       fd.append("fileD", event.target[1].files[0]);
+      fd.append("user", localStorage.getItem("email"));
       setFileElement(fd);
 
       await axios.post("http://localhost:3000/api/document", fd);
