@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 import { FaPen } from "react-icons/fa";
 import useGetData from "../hooks/useGetData";
+import config from "../config";
 import "../styles/pages/ClientDetail.scss";
 
 const ClientDetail = ({ match }) => {
@@ -10,9 +11,7 @@ const ClientDetail = ({ match }) => {
   let converter;
   const [html, setHtml] = useState("");
 
-  let client = useGetData(
-    `http://localhost:3000/api/client/${match.params.id}`
-  );
+  let client = useGetData(`${config.api}/api/client/${match.params.id}`);
 
   useEffect(() => {
     if (client[0]) {

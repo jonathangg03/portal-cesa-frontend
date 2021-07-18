@@ -1,17 +1,11 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import useSendData from "../hooks/useSendData";
 import axios from "axios";
+import config from "../config";
 import "../styles/pages/New.scss";
 
 const DocumentNew = () => {
   const history = useHistory();
-  const [name, setName] = useState("");
-  const [fileElement, setFileElement] = useState(null);
-
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
 
   const handleFileChange = (e) => {};
 
@@ -25,7 +19,7 @@ const DocumentNew = () => {
       fd.append("user", localStorage.getItem("email"));
       setFileElement(fd);
 
-      await axios.post("http://localhost:3000/api/document", fd);
+      await axios.post(`${config.api}/api/document`, fd);
       setTimeout(() => {
         history.push("/document");
       }, 1500);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import config from "../config";
 import "../styles/pages/Login.scss";
 
 const Login = () => {
@@ -21,10 +22,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await axios.post(
-      "http://localhost:3000/api/auth",
-      formValues
-    );
+    const result = await axios.post(`${config.api}/api/auth`, formValues);
     console.log(result.data.body);
     if (result.data.body.length > 0) {
       setJwt(result.data.body);

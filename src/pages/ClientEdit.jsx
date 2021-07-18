@@ -4,13 +4,12 @@ import DeleteModal from "../components/DeleteModal";
 import QuillEditor from "quill";
 import useGetData from "../hooks/useGetData";
 import useSendData from "../hooks/useSendData";
+import config from "../config";
 import "../styles/pages/New.scss";
 import "../styles/components/EditorComponent.scss";
 
 const ClientNew = ({ match }) => {
-  const client = useGetData(
-    `http://localhost:3000/api/client/${match.params.id}`
-  );
+  const client = useGetData(`${config.api}/api/client/${match.params.id}`);
   const history = useHistory();
   const [openModal, setOpenModal] = useState(false);
   const editor = useRef("");
@@ -60,7 +59,7 @@ const ClientNew = ({ match }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    useSendData("http://localhost:3000/api/client", "PUT", {
+    useSendData(`${config.api}/api/client`, "PUT", {
       id: match.params.id,
       name: name,
       detail: JSON.stringify({ ...quill.getContents() }),
@@ -75,10 +74,7 @@ const ClientNew = ({ match }) => {
   };
 
   const handleDelete = () => {
-    useSendData(
-      `http://localhost:3000/api/client/${match.params.id}`,
-      "DELETE"
-    );
+    useSendData(`${config.api}/api/client/${match.params.id}`, "DELETE");
     setTimeout(() => {
       history.push("/client");
     }, 1000);

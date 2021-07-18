@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import axios from "axios";
+import config from "../config";
 import "../styles/pages/Login.scss";
 
 const Signup = () => {
@@ -22,7 +23,7 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/api/user", formValues)
+      .post(`${config.api}/api/user`, formValues)
       .then(() => history.push("/login"));
   };
 

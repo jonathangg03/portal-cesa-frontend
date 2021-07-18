@@ -2,17 +2,18 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import useGetData from "../hooks/useGetData";
 import useSendData from "../hooks/useSendData";
+import config from "../config";
 import "../styles/pages/Document.scss";
 
 const Document = () => {
-  const document = useGetData("http://localhost:3000/api/document");
+  const document = useGetData(`${config.api}/api/document`);
   const history = useHistory("");
 
   const handleArchive = (e) => {
     const archivedEl = document.filter((el) => el.id === e.target.id)[0];
     archivedEl.archived = 1;
     console.log(archivedEl);
-    useSendData("http://localhost:3000/api/document", "PUT", archivedEl);
+    useSendData(`${config.api}/api/document`, "PUT", archivedEl);
     setTimeout(history.push("/document"), 1000);
   };
 

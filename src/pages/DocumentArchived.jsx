@@ -3,18 +3,19 @@ import { useHistory } from "react-router-dom";
 import useGetData from "../hooks/useGetData";
 import useSendData from "../hooks/useSendData";
 import DeleteModal from "../components/DeleteModal";
+import config from "../config";
 import "../styles/pages/Document.scss";
 
 const DocumentArchived = () => {
   const [openModal, setOpenModal] = useState(false);
-  const document = useGetData("http://localhost:3000/api/document");
+  const document = useGetData(`${config.api}/api/document`);
   const history = useHistory("");
 
   const handleArchive = (e) => {
     const archivedEl = document.filter((el) => el.id === e.target.id)[0];
     archivedEl.archived = 0;
     console.log(archivedEl);
-    useSendData("http://localhost:3000/api/document", "PUT", archivedEl);
+    useSendData(`${config.api}/api/document`, "PUT", archivedEl);
     setTimeout(history.push("/document/archived"), 1000);
   };
 
@@ -26,10 +27,7 @@ const DocumentArchived = () => {
     console.log(e);
     const archivedEl = document.filter((el) => el.id === e.target.id)[0];
     console.log(archivedEl);
-    useSendData(
-      `http://localhost:3000/api/document/${archivedEl.id}`,
-      "DELETE"
-    );
+    useSendData(`${config.api}/api/document/${archivedEl.id}`, "DELETE");
     console.log(history);
     setTimeout(location.reload(), 1000);
   };

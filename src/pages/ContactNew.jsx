@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import useSendData from "../hooks/useSendData";
+import config from "../config";
 import "../styles/pages/New.scss";
 
 const ContactNew = () => {
@@ -27,7 +28,7 @@ const ContactNew = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    useSendData("http://localhost:3000/api/contact", "POST", formValues);
+    useSendData(`${config.api}/api/contact`, "POST", formValues);
     setTimeout(() => {
       history.push("/contact");
     }, 1000);

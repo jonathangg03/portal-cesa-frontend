@@ -3,12 +3,11 @@ import { useHistory } from "react-router-dom";
 import useSendData from "../hooks/useSendData";
 import useGetData from "../hooks/useGetData";
 import DeleteModal from "../components/DeleteModal";
+import config from "../config";
 import "../styles/pages/New.scss";
 
 const ContactNew = ({ match }) => {
-  const contact = useGetData(
-    `http://localhost:3000/api/contact/${match.params.id}`
-  );
+  const contact = useGetData(`${config.api}/api/contact/${match.params.id}`);
   const history = useHistory();
   const [formValues, setFormValues] = useState({
     firstName: "",
@@ -39,7 +38,7 @@ const ContactNew = ({ match }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    useSendData("http://localhost:3000/api/contact", "PUT", formValues);
+    useSendData(`${config.api}/api/contact`, "PUT", formValues);
     setTimeout(() => {
       history.push("/contact");
     }, 1000);
@@ -50,10 +49,7 @@ const ContactNew = ({ match }) => {
   };
 
   const handleDelete = () => {
-    useSendData(
-      `http://localhost:3000/api/contact/${match.params.id}`,
-      "DELETE"
-    );
+    useSendData(`${config.api}/api/contact/${match.params.id}`, "DELETE");
     setTimeout(() => {
       history.push("/contact");
     }, 1000);

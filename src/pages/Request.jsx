@@ -3,10 +3,11 @@ import { FaPen } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Search from "../components/Search";
 import useGetData from "../hooks/useGetData";
+import config from "../config";
 import "../styles/pages/Request.scss";
 
 const Request = () => {
-  const request = useGetData("http://localhost:3000/api/request");
+  const request = useGetData(`${config.api}/api/request`);
   const [searchValues, setSearchValues] = useState([]); //Resultados de busqueda
   const [searchInputValue, setSearchInputValue] = useState(""); //Input de busqueda
 

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import QuillEditor from "quill";
 import useSendData from "../hooks/useSendData";
+import config from "../config";
 import "../styles/pages/New.scss";
 import "../styles/components/EditorComponent.scss";
 
@@ -48,7 +49,7 @@ const ClientNew = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    useSendData("http://localhost:3000/api/client", "POST", {
+    useSendData(`${config.api}/api/client`, "POST", {
       name: name,
       detail: JSON.stringify({ ...quill.getContents() }),
     });
