@@ -3,7 +3,6 @@ import "../styles/components/Header.scss";
 
 const Header = () => {
   const handleLogout = () => {
-    localStorage.removeItem("session");
     localStorage.removeItem("email");
   };
   return (

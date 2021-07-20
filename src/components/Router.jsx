@@ -22,22 +22,15 @@ const Router = () => {
   const [session, setSession] = useState(null);
 
   useState(() => {
-    const sessionValue = localStorage.getItem("session");
+    const sessionValue = localStorage.getItem("email");
     if (sessionValue) {
       setSession(sessionValue);
     }
-  }, []);
+  }, [localStorage]);
 
   return (
     <BrowserRouter>
       <Switch>
-        {!session && (
-          <>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route component={NotFound} />
-          </>
-        )}
         {session && (
           <Layout>
             <Route exact path="/" component={Contact} />
@@ -60,6 +53,9 @@ const Router = () => {
             <Route exact path="/request/:id/edit" component={RequestEdit} />
           </Layout>
         )}
+        <Route exact path="/" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
