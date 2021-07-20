@@ -82,9 +82,7 @@ class Login extends Component {
           <Link to="/signup">Registrarse</Link>
           {this.state.loading && <Loading />}
           {this.state.error && (
-            <p className="login__form-message">
-              Usuario o contraseña incorrectos
-            </p>
+            <p className="login__form-message">{this.state.error}</p>
           )}
         </div>
       </div>
