@@ -12,7 +12,7 @@ const Menu = ({ onSubmit, onChange }) => {
         onChange={onChange}
         required
       />
-      <button type="sumbit">Buscar Contacto</button>
+      <button type="sumbit">Buscar</button>
     </form>
   );
 };

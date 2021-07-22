@@ -57,6 +57,7 @@ class Signup extends Component {
               id="name"
               placeholder="Nombre completo"
               required
+              value={this.state.formValues.name}
               onChange={this.handleFormValues}
             />
             <input
@@ -64,6 +65,7 @@ class Signup extends Component {
               name="email"
               id="email"
               placeholder="Correo"
+              value={this.state.formValues.email}
               required
               onChange={this.handleFormValues}
             />
@@ -72,6 +74,7 @@ class Signup extends Component {
               name="password"
               id="password"
               placeholder="Contraseña"
+              value={this.state.formValues.password}
               required
               onChange={this.handleFormValues}
             />
