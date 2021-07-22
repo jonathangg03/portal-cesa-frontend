@@ -11,7 +11,7 @@ class Contact extends Component {
   constructor() {
     super();
     this.state = {
-      searchInputValue: [],
+      searchInputValue: "",
       data: [],
       loading: false,
       error: null,
@@ -35,25 +35,27 @@ class Contact extends Component {
   handleSearchChange = (event) => {
     this.setState({
       ...this.state,
-      searchValue: event.target.value,
+      searchInputValue: event.target.value,
     });
   };
 
-  // handleSearchSubmit = (event) => {
-  //   event.preventDefault();
-  //   const newContacts = contact.filter((contactItem) => {
-  //     if (
-  //       contactItem.firstName
-  //         .toLowerCase()
-  //         .includes(searchInputValue.toLowerCase()) ||
-  //       contactItem.tag.toLowerCase().includes(searchInputValue.toLowerCase())
-  //     ) {
-  //       return contactItem;
-  //     }
-  //   });
+  handleSearchSubmit = async (event) => {
+    event.preventDefault();
+    const response = await getData(`${config.api}/api/contact`);
+    const newContacts = response.data.body.filter((contactItem) => {
+      if (
+        contactItem.firstName
+          .toLowerCase()
+          .includes(this.state.searchInputValue.toLowerCase()) ||
+        contactItem.tag.toLowerCase() ===
+          this.state.searchInputValue.toLowerCase()
+      ) {
+        return contactItem;
+      }
+    });
 
-  //   setSearchValues(newContacts);
-  // };
+    this.setState({ ...this.state, data: newContacts });
+  };
 
   render() {
     return (

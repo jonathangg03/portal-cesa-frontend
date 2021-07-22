@@ -5,13 +5,7 @@ const Menu = ({ onSubmit, onChange }) => {
   return (
     <form className="search" onSubmit={onSubmit}>
       <h3>CRITERIO DE BUSQUEDA</h3>
-      <input
-        type="text"
-        name="search"
-        id="search"
-        onChange={onChange}
-        required
-      />
+      <input type="text" name="search" id="search" onChange={onChange} />
       <button type="sumbit">Buscar</button>
     </form>
   );
