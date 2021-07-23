@@ -21,11 +21,20 @@
       padding: 0;
     }
   }
+  &__client-container {
+    font-size: 1.4rem;
+  }
   .clientDetail__item {
     display: initial;
-    padding: 20px 10px;
+    padding: 10px 20px;
     * {
       font-size: initial;
+      list-style: initital;
+      tab-size: initial;
+    }
+    ul,
+    ol {
+      padding: 10px 20px;
     }
   }
 }

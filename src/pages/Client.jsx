@@ -73,9 +73,11 @@ class Client extends Component {
               <div className="client__table" key={clientItem._id}>
                 <p>{clientItem.name}</p>
                 <p>
-                  <Link to={`/client/${clientItem.id}`}>Ver información</Link>
+                  <Link to={`/client/detail/${clientItem._id}`}>
+                    Ver información
+                  </Link>
                 </p>
-                <Link to={`/client/${clientItem.id}/edit`}>
+                <Link to={`/client/detail/${clientItem._id}/edit`}>
                   <FaPen />
                 </Link>
               </div>

@@ -1,127 +1,183 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { Component } from "react";
 import DeleteModal from "../components/DeleteModal";
 import QuillEditor from "quill";
-import useGetData from "../hooks/useGetData";
-import useSendData from "../hooks/useSendData";
+import getData from "../utils/getData";
+import sendData from "../utils/sendData";
 import config from "../config";
+import Loading from "../components/Loading";
 import "../styles/pages/New.scss";
 import "../styles/components/EditorComponent.scss";
 
-const ClientNew = ({ match }) => {
-  const client = useGetData(`${config.api}/api/client/${match.params.id}`);
-  const history = useHistory();
-  const [openModal, setOpenModal] = useState(false);
-  const editor = useRef("");
-  const [name, setName] = useState("");
-  const [quill, setQuill] = useState("");
+class ClientEdit extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quill: "",
+      name: "",
+      loading: false,
+      error: null,
+      openModal: false,
+    };
+  }
 
-  useEffect(() => {
-    let toolbarOptions = [
-      ["bold", "italic", "underline", "strike"], // toggled buttons
-      ["blockquote"],
+  //getData();
 
-      [{ header: 1 }, { header: 2 }], // custom button values
-      [{ list: "ordered" }, { list: "bullet" }],
-      [{ script: "sub" }, { script: "super" }], // superscript/subscript
-      [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-      [{ direction: "rtl" }], // text direction
-
-      [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-      [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-      [{ font: [] }],
-      [{ align: [] }],
-
-      ["clean"], // remove formatting button
-    ];
-    setQuill(
-      new QuillEditor(editor.current, {
-        modules: {
-          toolbar: toolbarOptions,
-        },
-        theme: "snow",
-      })
-    );
-  }, []);
-
-  useEffect(() => {
-    if (client[0]) {
-      setName(client[0].name);
-      quill.setContents(JSON.parse(client[0].detail).ops);
-    }
-  }, [client]);
-
-  const handleFormChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    useSendData(`${config.api}/api/client`, "PUT", {
-      id: match.params.id,
-      name: name,
-      detail: JSON.stringify({ ...quill.getContents() }),
+  async componentDidMount() {
+    this.setState({
+      ...this.state,
+      loading: true,
     });
-    setTimeout(() => {
+    try {
+      const response = await getData(
+        `${config.api}/api/client/${this.props.match.params.id}`
+      );
+
+      let toolbarOptions = [
+        ["bold", "italic", "underline", "strike"], // toggled buttons
+        ["blockquote"],
+
+        [{ header: 1 }, { header: 2 }], // custom button values
+        [{ list: "ordered" }, { list: "bullet" }],
+        [{ script: "sub" }, { script: "super" }], // superscript/subscript
+        [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+        [{ direction: "rtl" }], // text direction
+
+        [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+        [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+        [{ font: [] }],
+        [{ align: [] }],
+
+        ["clean"], // remove formatting button
+      ];
+      this.setState({
+        ...this.state,
+        name: response.data.body.name,
+        loading: false,
+        quill: new QuillEditor(document.getElementById("editor"), {
+          modules: {
+            toolbar: toolbarOptions,
+          },
+          theme: "snow",
+        }),
+      });
+      console.log(response);
+      this.state.quill.setContents(JSON.parse(response.data.body.detail));
+    } catch (error) {
+      this.setState({
+        ...this.state,
+        error: error.message,
+        loading: false,
+        quill,
+      });
+    }
+  }
+
+  // useEffect(() => {
+  //   if (client[0]) {
+  //     setName(client[0].name);
+  //     quill.setContents(JSON.parse(client[0].detail).ops);
+  //   }
+  // }, [client]);
+
+  handleFormChange = (event) => {
+    this.setState({
+      ...this.state,
+      name: event.target.value,
+    });
+  };
+
+  handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log("hola");
+    this.setState({
+      ...this.state,
+      loading: true,
+    });
+    try {
+      await sendData(
+        `${config.api}/api/client/${this.props.match.params.id}`,
+        "PUT",
+        {
+          id: this.props.match.params.id,
+          name: this.state.name,
+          detail: JSON.stringify({ ...quill.getContents() }),
+        }
+      );
       history.push("/client");
-    }, 1500);
+    } catch (error) {
+      this.setState({
+        ...this.state,
+        loading: false,
+        error: error.message,
+      });
+    }
   };
 
-  const handleOpenModal = () => {
-    setOpenModal(!openModal);
+  handleOpenModal = () => {
+    this.setState({ ...this.state, openModal: !this.state.openModal });
   };
 
-  const handleDelete = () => {
-    useSendData(`${config.api}/api/client/${match.params.id}`, "DELETE");
-    setTimeout(() => {
-      history.push("/client");
-    }, 1000);
+  handleDelete = async () => {
+    this.setState({ ...this.state, loading: true });
+    try {
+      await sendData(
+        `${config.api}/api/client/${this.props.match.params.id}`,
+        "DELETE"
+      );
+      this.props.history.push("/client");
+      this.setState({ ...this.state, loading: false });
+    } catch (error) {
+      this.setState({ ...this.state, loading: false, error: error.message });
+    }
   };
 
-  return (
-    <section className="add">
-      <h3>AGREGAR UN NUEVO CONTACTO</h3>
-      <form
-        action=""
-        id="add__form"
-        className="add__form"
-        onSubmit={handleFormSubmit}
-      >
-        <div className="add_form-element-container">
-          <label htmlFor="name">
-            <p>NOMBRE DEL CLIENTE</p>
-            <input
-              onChange={handleFormChange}
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Primer nombre"
-              className="add__form-input"
-              value={name}
-            />
-          </label>
-        </div>
-        <div ref={editor}></div>
-        <button type="submit" id="add__button">
-          Editar cliente
-        </button>
-        <button
-          type="button"
-          className="delete_button"
-          onClick={handleOpenModal}
+  render() {
+    return (
+      <section className="add">
+        <h3>AGREGAR UN NUEVO CONTACTO</h3>
+        <form
+          action=""
+          id="add__form"
+          className="add__form"
+          onSubmit={this.handleFormSubmit}
         >
-          Eliminar cliente
-        </button>
-      </form>
-      <DeleteModal
-        opened={openModal}
-        handleCloseModal={handleOpenModal}
-        handleDelete={handleDelete}
-      />
-    </section>
-  );
-};
+          <div className="add_form-element-container">
+            <label htmlFor="name">
+              <p>NOMBRE DEL CLIENTE</p>
+              <input
+                onChange={this.handleFormChange}
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Primer nombre"
+                className="add__form-input"
+                value={this.state.name}
+              />
+            </label>
+          </div>
+          <div id="editor"></div>
+          <button type="submit" id="add__button">
+            Editar cliente
+          </button>
+          <button
+            type="button"
+            className="delete_button"
+            onClick={this.handleOpenModal}
+          >
+            Eliminar cliente
+          </button>
+        </form>
+        <DeleteModal
+          opened={this.state.openModal}
+          handleCloseModal={this.handleOpenModal}
+          handleDelete={this.handleDelete}
+        />
+        {this.state.loading && <Loading />}
+      </section>
+    );
+  }
+}
 
-export default ClientNew;
+export default ClientEdit;

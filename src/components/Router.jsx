@@ -40,8 +40,12 @@ const Router = () => {
             <Route exact path="/request" component={Request} />
             <Route exact path="/contact/new" component={ContactNew} />
             <Route exact path="/client/new" component={ClientNew} />
-            <Route exact path="/client/:id" component={ClientDetail} />
-            <Route exact path="/client/:id/edit" component={ClientEdit} />
+            <Route exact path="/client/detail/:id" component={ClientDetail} />
+            <Route
+              exact
+              path="/client/detail/:id/edit"
+              component={ClientEdit}
+            />
             <Route exact path="/document/new" component={DocumentNew} />
             <Route exact path="/request/new" component={RequestNew} />
             <Route
