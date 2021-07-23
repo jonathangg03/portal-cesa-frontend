@@ -55,6 +55,7 @@ class ClientNew extends Component {
   handleFormSubmit = async (event) => {
     event.preventDefault();
     this.setState({ ...this.state, loading: true });
+    console.log(JSON.stringify({ ...this.state.quill.getContents() }));
     try {
       await sendData(`${config.api}/api/client`, "POST", {
         name: this.state.name,

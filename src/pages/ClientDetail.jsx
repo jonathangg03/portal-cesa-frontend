@@ -35,7 +35,6 @@ class ClientDetail extends Component {
 
         const html = converter.convert();
 
-        console.log(html);
         this.setState({
           ...this.state,
           loading: false,

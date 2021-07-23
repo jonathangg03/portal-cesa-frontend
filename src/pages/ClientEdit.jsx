@@ -62,14 +62,12 @@ class ClientEdit extends Component {
           theme: "snow",
         }),
       });
-      console.log(response);
       this.state.quill.setContents(JSON.parse(response.data.body.detail));
     } catch (error) {
       this.setState({
         ...this.state,
         error: error.message,
         loading: false,
-        quill,
       });
     }
   }
@@ -90,23 +88,26 @@ class ClientEdit extends Component {
 
   handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("hola");
-    this.setState({
-      ...this.state,
-      loading: true,
-    });
+    this.setState({ ...this.state, loading: true });
     try {
+      console.log(this.state);
       await sendData(
         `${config.api}/api/client/${this.props.match.params.id}`,
         "PUT",
         {
           id: this.props.match.params.id,
           name: this.state.name,
-          detail: JSON.stringify({ ...quill.getContents() }),
+          detail: JSON.stringify({ ...this.state.quill.getContents() }),
         }
       );
-      history.push("/client");
+      // console.log("response");
+      this.setState({
+        ...this.state,
+        loading: false,
+      });
+      this.props.history.push("/client");
     } catch (error) {
+      console.log(error);
       this.setState({
         ...this.state,
         loading: false,
