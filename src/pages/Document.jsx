@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import getData from "../utils/getData";
 import config from "../config";
+import Loading from "../components/Loading";
 import "../styles/pages/Document.scss";
 
 class Document extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchInputValue: [],
       data: [],
       loading: false,
       error: null,
@@ -69,6 +69,7 @@ class Document extends Component {
             }
           })}
         </section>
+        {this.state.loading && <Loading />}
       </>
     );
   }

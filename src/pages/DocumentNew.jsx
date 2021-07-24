@@ -1,73 +1,84 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
+import React, { Component } from "react";
+// import axios from "axios";
+import Loading from "../components/Loading";
+import sendData from "../utils/sendData";
 import config from "../config";
 import "../styles/pages/New.scss";
 
-const DocumentNew = () => {
-  const history = useHistory();
+class DocumentNew extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+      error: null,
+    };
+  }
 
-  const handleFileChange = (e) => {};
-
-  const handleFormSubmit = async (event) => {
+  handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    if (event.target[1].files) {
-      const fd = new FormData();
-      fd.append("name", event.target[0].value);
-      fd.append("fileD", event.target[1].files[0]);
-      fd.append("user", localStorage.getItem("email"));
-      setFileElement(fd);
-
-      await axios.post(`${config.api}/api/document`, fd);
-      setTimeout(() => {
-        history.push("/document");
-      }, 1500);
+    this.setState({ ...this.state, loading: true });
+    try {
+      console.log(event);
+      if (event.target[1].files) {
+        const fd = new FormData();
+        fd.append("name", event.target[0].value);
+        fd.append("fileD", event.target[1].files[0]);
+        fd.append("user", localStorage.getItem("email"));
+        // await sendData(`${config.api}/api/document`, "POST", fd);
+        await sendData(`http://localhost:3000/api/document`, "POST", fd);
+        this.setState({ ...this.state, loading: false });
+        this.props.history.push("/document");
+      }
+    } catch (error) {
+      console.log(error);
+      this.setState({ ...this.state, loading: false, error: error.message });
     }
   };
 
-  return (
-    <section className="add">
-      <h3>AGREGAR UN NUEVO DOCUMENTO</h3>
-      <form
-        action="/api/document"
-        method="POST"
-        encType="multipart/form-data"
-        id="add__form"
-        className="add__form"
-        onSubmit={handleFormSubmit}
-      >
-        <div className="add_form-element-container">
-          <label htmlFor="name">
-            <p>TITULO DEL DOCUMENTO</p>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Primer nombre"
-              required
-              className="add__form-input"
-            />
-          </label>
-          <label htmlFor="file">
-            <p>SELECCIONE UN ARCHIVO</p>
-            <input
-              type="file"
-              name="fileD"
-              required
-              onChange={handleFileChange}
-              id="file"
-              className="add__form-input file"
-            />
-            <p>Sí envía un PDF, se abrira automaticamente en otra pestaña</p>
-          </label>
-        </div>
-        <button type="submit" id="add__button">
-          Agregar documento
-        </button>
-      </form>
-    </section>
-  );
-};
+  render() {
+    return (
+      <section className="add">
+        <h3>AGREGAR UN NUEVO DOCUMENTO</h3>
+        <form
+          action="/api/document"
+          method="POST"
+          encType="multipart/form-data"
+          id="add__form"
+          className="add__form"
+          onSubmit={this.handleFormSubmit}
+        >
+          <div className="add_form-element-container">
+            <label htmlFor="name">
+              <p>TITULO DEL DOCUMENTO</p>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Primer nombre"
+                required
+                className="add__form-input"
+              />
+            </label>
+            <label htmlFor="file">
+              <p>SELECCIONE UN ARCHIVO</p>
+              <input
+                type="file"
+                name="fileD"
+                required
+                id="file"
+                className="add__form-input file"
+              />
+              <p>Sí envía un PDF, se abrira automaticamente en otra pestaña</p>
+            </label>
+          </div>
+          <button type="submit" id="add__button">
+            Agregar documento
+          </button>
+        </form>
+        {this.state.loading && <Loading />}
+      </section>
+    );
+  }
+}
 
 export default DocumentNew;
