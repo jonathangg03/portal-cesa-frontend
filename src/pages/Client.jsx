@@ -11,7 +11,7 @@ class Client extends Component {
   constructor() {
     super();
     this.state = {
-      searchInputValue: [],
+      searchInputValue: "",
       data: [],
       loading: false,
       error: null,
@@ -21,7 +21,7 @@ class Client extends Component {
   handleSearchChange = (event) => {
     this.setState({
       ...this.state,
-      searchValue: event.target.value,
+      searchInputValue: event.target.value,
     });
   };
 
@@ -39,21 +39,25 @@ class Client extends Component {
     }
   }
 
-  // handleSearchSubmit = (event) => {
-  //   event.preventDefault();
-  //   const newClient = client.filter((clientItem) => {
-  //     if (
-  //       clientItem.firstName
-  //         .toLowerCase()
-  //         .includes(searchInputValue.toLowerCase()) ||
-  //       clientItem.tag.toLowerCase().includes(searchInputValue.toLowerCase())
-  //     ) {
-  //       return clientItem;
-  //     }
-  //   });
-
-  //   setSearchValues(newClient);
-  // };
+  handleSearchSubmit = async (event) => {
+    event.preventDefault();
+    this.setState({ ...this.state, loading: true });
+    try {
+      const response = await getData(`${config.api}/api/client`);
+      const newClient = response.data.body.filter((clientItem) => {
+        if (
+          clientItem.name
+            .toLowerCase()
+            .includes(this.state.searchInputValue.toLowerCase())
+        ) {
+          return clientItem;
+        }
+      });
+      this.setState({ ...this.state, data: newClient, loading: false });
+    } catch (error) {
+      this.setState({ ...this.state, loading: false, error: error.message });
+    }
+  };
 
   render() {
     return (
@@ -61,6 +65,7 @@ class Client extends Component {
         <Search
           onChange={this.handleSearchChange}
           onSubmit={this.handleSearchSubmit}
+          placeholder="Ingresa el nombre del cliente"
         />
         <section className="client">
           <div className="client__table">

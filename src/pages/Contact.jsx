@@ -41,20 +41,25 @@ class Contact extends Component {
 
   handleSearchSubmit = async (event) => {
     event.preventDefault();
-    const response = await getData(`${config.api}/api/contact`);
-    const newContacts = response.data.body.filter((contactItem) => {
-      if (
-        contactItem.firstName
-          .toLowerCase()
-          .includes(this.state.searchInputValue.toLowerCase()) ||
-        contactItem.tag.toLowerCase() ===
-          this.state.searchInputValue.toLowerCase()
-      ) {
-        return contactItem;
-      }
-    });
+    this.setState({ ...this.state, loading: true });
+    try {
+      const response = await getData(`${config.api}/api/contact`);
+      const newContacts = response.data.body.filter((contactItem) => {
+        if (
+          contactItem.firstName
+            .toLowerCase()
+            .includes(this.state.searchInputValue.toLowerCase()) ||
+          contactItem.tag.toLowerCase() ===
+            this.state.searchInputValue.toLowerCase()
+        ) {
+          return contactItem;
+        }
+      });
 
-    this.setState({ ...this.state, data: newContacts });
+      this.setState({ ...this.state, data: newContacts, loading: false });
+    } catch (error) {
+      this.setState({ ...this.state, loading: false, error: error.message });
+    }
   };
 
   render() {
@@ -63,6 +68,7 @@ class Contact extends Component {
         <Search
           onChange={this.handleSearchChange}
           onSubmit={this.handleSearchSubmit}
+          placeholder="Ingresa el primer nombre"
         />
         <section className="contacts">
           <div className="contacts__table">
