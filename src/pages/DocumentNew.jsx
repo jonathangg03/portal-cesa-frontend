@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-// import axios from "axios";
+import axios from "axios";
 import Loading from "../components/Loading";
-import sendData from "../utils/sendData";
+// import sendData from "../utils/sendData";
 import config from "../config";
 import "../styles/pages/New.scss";
 
@@ -18,14 +18,12 @@ class DocumentNew extends Component {
     event.preventDefault();
     this.setState({ ...this.state, loading: true });
     try {
-      console.log(event);
       if (event.target[1].files) {
         const fd = new FormData();
         fd.append("name", event.target[0].value);
         fd.append("fileD", event.target[1].files[0]);
         fd.append("user", localStorage.getItem("email"));
-        // await sendData(`${config.api}/api/document`, "POST", fd);
-        await sendData(`http://localhost:3000/api/document`, "POST", fd);
+        await axios.post(`${config.api}/api/document`, fd);
         this.setState({ ...this.state, loading: false });
         this.props.history.push("/document");
       }
