@@ -40,14 +40,15 @@ class DocumentArchived extends Component {
         (el) => el._id === e.target.id
       )[0];
       archivedEl.archived = false;
-      sendData(
+      await sendData(
         `${config.api}/api/document/${archivedEl._id}`,
         "PUT",
         archivedEl
       );
+      this.setState({ ...this.state, loading: false });
       this.props.history.push("/document/archived");
-      this.setState({ ...this.state, loading: true });
     } catch (error) {
+      this.setState({ ...this.state, loading: false });
       console.log(error.message);
     }
   };

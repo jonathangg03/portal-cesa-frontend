@@ -15,14 +15,17 @@ class Document extends Component {
     };
   }
 
-  handleArchive = (e) => {
+  handleArchive = async (e) => {
     const archivedEl = this.state.document.filter(
       (el) => el._id === e.target.id
     )[0];
-    console.log(e);
     archivedEl.archived = true;
-    sendData(`${config.api}/api/document/${archivedEl._id}`, "PUT", archivedEl);
-    setTimeout(this.props.history.push("/document"), 1000);
+    await sendData(
+      `${config.api}/api/document/${archivedEl._id}`,
+      "PUT",
+      archivedEl
+    );
+    this.props.history.push("/document");
   };
 
   async componentDidMount() {
