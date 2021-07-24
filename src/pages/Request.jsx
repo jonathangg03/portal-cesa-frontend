@@ -81,7 +81,7 @@ class Request extends Component {
                 <p>{requestItem.date}</p>
                 <p>{requestItem.attendant}</p>
                 <p>{requestItem.detail}</p>
-                <Link to={`/request/${requestItem.id}/edit`}>
+                <Link to={`/request/${requestItem._id}/edit`}>
                   <FaPen />
                 </Link>
               </div>
