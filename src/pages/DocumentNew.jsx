@@ -28,7 +28,8 @@ class DocumentNew extends Component {
         this.props.history.push("/document");
       }
     } catch (error) {
-      this.setState({ ...this.state, loading: false, error: error.message });
+      console.log(error);
+      this.setState({ ...this.state, loading: false, error: error });
     }
   };
 

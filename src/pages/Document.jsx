@@ -55,9 +55,10 @@ class Document extends Component {
           </div>
           {this.state.document.map((documentItem) => {
             if (!documentItem.archived) {
+              console.log(documentItem);
               return (
                 <div className="document__table" key={documentItem._id}>
-                  <a href={documentItem.document} target="_blank">
+                  <a href={documentItem.uploadUrl} target="_blank">
                     {documentItem.name}
                   </a>
                   <p>{documentItem.size}</p>
