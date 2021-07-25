@@ -58,7 +58,7 @@ class Document extends Component {
               console.log(documentItem);
               return (
                 <div className="document__table" key={documentItem._id}>
-                  <a href={documentItem.uploadUrl} target="_blank">
+                  <a href={documentItem.document} target="_blank">
                     {documentItem.name}
                   </a>
                   <p>{documentItem.size}</p>
