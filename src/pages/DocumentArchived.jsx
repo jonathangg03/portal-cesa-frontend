@@ -49,7 +49,6 @@ class DocumentArchived extends Component {
       this.props.history.push("/document/archived");
     } catch (error) {
       this.setState({ ...this.state, loading: false });
-      console.log(error.message);
     }
   };
 

@@ -90,7 +90,6 @@ class ClientEdit extends Component {
     event.preventDefault();
     this.setState({ ...this.state, loading: true });
     try {
-      console.log(this.state);
       await sendData(
         `${config.api}/api/client/${this.props.match.params.id}`,
         "PUT",
@@ -100,14 +99,12 @@ class ClientEdit extends Component {
           detail: JSON.stringify({ ...this.state.quill.getContents() }),
         }
       );
-      // console.log("response");
       this.setState({
         ...this.state,
         loading: false,
       });
       this.props.history.push("/client");
     } catch (error) {
-      console.log(error);
       this.setState({
         ...this.state,
         loading: false,

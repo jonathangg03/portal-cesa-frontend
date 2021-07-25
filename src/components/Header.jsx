@@ -10,13 +10,9 @@ const Header = () => {
       <h2>Directorio</h2>
       <nav>
         <ul className="top-menu">
-          <li className="top-menu__item">Directorio</li>
-          <li className="top-menu__item">Clientes</li>
-          <li className="top-menu__item">Documentos</li>
-          <li className="top-menu__item">Pedidos de servicio</li>
           <li className="top-menu__item">
             <a onClick={handleLogout} href="/">
-              Salir
+              Cerrar sesión
             </a>
           </li>
         </ul>

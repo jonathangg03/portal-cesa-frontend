@@ -37,7 +37,6 @@ class Login extends Component {
         email,
         password,
       });
-      console.log(result);
       if (result && result.body.length > 0) {
         localStorage.setItem("email", email);
         this.setState({ ...this.state, loading: false, error: null });

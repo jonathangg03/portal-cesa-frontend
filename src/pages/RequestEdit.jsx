@@ -38,7 +38,6 @@ class ContactNew extends Component {
         },
       });
     } catch (error) {
-      console.log(error);
       this.setState({
         ...this.state,
         loading: false,
