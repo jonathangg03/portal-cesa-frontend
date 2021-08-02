@@ -8,15 +8,9 @@ const Header = () => {
   return (
     <header>
       <h2>Directorio</h2>
-      <nav>
-        <ul className="top-menu">
-          <li className="top-menu__item">
-            <a onClick={handleLogout} href="/">
-              Cerrar sesión
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <a onClick={handleLogout} href="/">
+        Cerrar sesión
+      </a>
     </header>
   );
 };
