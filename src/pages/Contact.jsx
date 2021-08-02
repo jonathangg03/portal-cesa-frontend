@@ -5,7 +5,7 @@ import Search from "../components/Search";
 import getData from "../utils/getData";
 import config from "../config";
 import Loading from "../components/Loading";
-// import "../styles/pages/Contact.scss";
+import "../styles/pages/Contact.scss";
 
 class Contact extends Component {
   constructor() {
@@ -65,7 +65,7 @@ class Contact extends Component {
   render() {
     return (
       <>
-        {/* <Search
+        <Search
           onChange={this.handleSearchChange}
           onSubmit={this.handleSearchSubmit}
           placeholder="Ingresa el primer nombre"
@@ -87,9 +87,11 @@ class Contact extends Component {
             return (
               <div className="contacts__table" key={contactItem._id}>
                 <p>{contactItem.firstName}</p>
-                <p>{contactItem.secondName}</p>
+                {contactItem.secondName && <p>{contactItem.secondName}</p>}
                 <p>{contactItem.firstLastname}</p>
-                <p>{contactItem.secondLastname}</p>
+                {contactItem.secondLastname && (
+                  <p>{contactItem.secondLastname}</p>
+                )}
                 <p>{contactItem.email}</p>
                 <p>{contactItem.prefix}</p>
                 <p>{contactItem.phone}</p>
@@ -102,7 +104,7 @@ class Contact extends Component {
             );
           })}
           {this.state.loading && <Loading />}
-        </section> */}
+        </section>
       </>
     );
   }
