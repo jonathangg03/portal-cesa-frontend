@@ -13,7 +13,6 @@
     color: white;
     border: none;
     border-radius: 5px;
-    // margin: 5px auto;
   }
   &__table {
     padding: 20px 10px 10px;
@@ -21,11 +20,6 @@
     width: 70%;
     margin: 0 auto;
     border-bottom: 1px solid $border-sections;
-    // padding: 20px 10px 10px;
-    // align-items: center;
-    // display: grid;
-    // grid-template-columns: 1.5fr 0.5fr 1fr 1fr 0.5fr;
-    // border: 1px solid $border-sections;
     p {
       padding: 5px 0;
     }
@@ -46,13 +40,6 @@
       text-align: left;
     }
   }
-  // .archived {
-  //   grid-template-columns: 1.5fr 0.5fr 1fr 1fr 0.5fr 0.5fr;
-
-  //   .delete_button {
-  //     margin: 0;
-  //   }
-  // }
 }
 
 @media (min-width: 1100px) {
@@ -63,7 +50,6 @@
     display: grid;
     grid-template-columns: 1.5fr 0.5fr 1fr 1fr 0.5fr;
     gap: 10px;
-    // border: 1px solid $border-sections;
   }
   .document button {
     width: 100%;
