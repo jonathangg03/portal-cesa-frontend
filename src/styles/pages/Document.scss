@@ -54,3 +54,29 @@
   //   }
   // }
 }
+
+@media (min-width: 1100px) {
+  .document__table {
+    padding: 20px 10px 10px;
+    // align-items: center;
+    width: auto;
+    display: grid;
+    grid-template-columns: 1.5fr 0.5fr 1fr 1fr 0.5fr;
+    gap: 10px;
+    // border: 1px solid $border-sections;
+  }
+  .document button {
+    width: 100%;
+  }
+  .document__table:first-child {
+    display: grid;
+  }
+
+  .archived {
+    grid-template-columns: 1.5fr 0.5fr 1fr 1fr 0.5fr 0.5fr;
+
+    .delete_button {
+      margin: 0;
+    }
+  }
+}
