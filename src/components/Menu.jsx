@@ -1,9 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { FaAddressBook, FaBook, FaUserClock, FaFileAlt } from "react-icons/fa";
+import {
+  FaAddressBook,
+  FaBook,
+  FaUserClock,
+  FaFileAlt,
+  FaBars,
+} from "react-icons/fa";
 import "../styles/components/Menu.scss";
 
 const Menu = () => {
+  const menu = useRef("");
+  const bg_img = useRef("");
   useEffect(() => {
     //Toggle menu
     const $detailsList = document.querySelectorAll("details");
@@ -19,9 +27,14 @@ const Menu = () => {
     });
   }, []);
 
+  const handleShowMenu = () => {
+    menu.current.classList.toggle("menu-show");
+    bg_img.current.classList.toggle("menu-show");
+  };
+
   return (
     <>
-      <section className="menu">
+      <section className="menu" ref={menu}>
         <h2>PORTAL CESA</h2>
         <ul className="menu__container">
           <details className="menu__container-details">
@@ -85,7 +98,10 @@ const Menu = () => {
           </details>
         </ul>
       </section>
-      <div className="bg-image"></div>
+      <div className="bg-image" ref={bg_img}></div>
+      <div className="menu__activator" onClick={handleShowMenu}>
+        <FaBars />
+      </div>
     </>
   );
 };
