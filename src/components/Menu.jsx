@@ -44,10 +44,14 @@ const Menu = () => {
             </summary>
             <ul className="menu__list">
               <li className="menu__list-item">
-                <Link to="/contact">Ver contactos</Link>
+                <Link to="/contact" onClick={handleShowMenu}>
+                  Ver contactos
+                </Link>
               </li>
               <li className="menu__list-item">
-                <Link to="/contact/new">Agregar contacto</Link>
+                <Link to="/contact/new" onClick={handleShowMenu}>
+                  Agregar contacto
+                </Link>
               </li>
             </ul>
           </details>
@@ -58,10 +62,14 @@ const Menu = () => {
             </summary>
             <ul>
               <li className="menu__list-item">
-                <Link to="/client">Ver clientes</Link>
+                <Link to="/client" onClick={handleShowMenu}>
+                  Ver clientes
+                </Link>
               </li>
               <li className="menu__list-item">
-                <Link to="/client/new">Agregar cliente</Link>
+                <Link to="/client/new" onClick={handleShowMenu}>
+                  Agregar cliente
+                </Link>
               </li>
             </ul>
           </details>
@@ -72,10 +80,14 @@ const Menu = () => {
             </summary>
             <ul className="menu__list">
               <li className="menu__list-item">
-                <Link to="/request">Ver pedidos</Link>
+                <Link to="/request" onClick={handleShowMenu}>
+                  Ver pedidos
+                </Link>
               </li>
               <li className="menu__list-item">
-                <Link to="/request/new">Agregar pedido</Link>
+                <Link to="/request/new" onClick={handleShowMenu}>
+                  Agregar pedido
+                </Link>
               </li>
             </ul>
           </details>
@@ -86,13 +98,19 @@ const Menu = () => {
             </summary>
             <ul className="menu__list">
               <li className="menu__list-item">
-                <Link to="/document">Ver documentos</Link>
+                <Link to="/document" onClick={handleShowMenu}>
+                  Ver documentos
+                </Link>
               </li>
               <li className="menu__list-item">
-                <Link to="/document/new">Agregar documento</Link>
+                <Link to="/document/new" onClick={handleShowMenu}>
+                  Agregar documento
+                </Link>
               </li>
               <li className="menu__list-item">
-                <Link to="/document/archived">Documentos archivados</Link>
+                <Link to="/document/archived" onClick={handleShowMenu}>
+                  Documentos archivados
+                </Link>
               </li>
             </ul>
           </details>
