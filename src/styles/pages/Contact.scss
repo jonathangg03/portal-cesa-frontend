@@ -4,6 +4,7 @@
   margin: 10px;
   background-color: $bg-sections;
   border: 1px solid $border-sections;
+  padding: 10px 0;
   &__table {
     padding: 20px 10px 10px;
     font-size: 1.3rem;
@@ -17,6 +18,7 @@
     //   );
     p {
       padding: 5px 0;
+      font-size: 1.6rem;
     }
     a {
       color: blue;
