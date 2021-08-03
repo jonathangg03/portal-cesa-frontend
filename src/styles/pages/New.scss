@@ -70,3 +70,14 @@ button {
   margin-top: 5px;
   background-color: #d40044;
 }
+
+@media (min-width: 1100px) {
+  .add__form {
+    button {
+      margin: 5px 0;
+    }
+  }
+  .add_form-element-container {
+    justify-content: initial;
+  }
+}
