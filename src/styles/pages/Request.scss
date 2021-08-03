@@ -33,3 +33,18 @@
     display: none;
   }
 }
+
+@media (min-width: 1100px) {
+  .request {
+    padding: 5px;
+  }
+  .request__table {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    width: auto;
+  }
+
+  .request__table:first-child {
+    display: grid;
+  }
+}
