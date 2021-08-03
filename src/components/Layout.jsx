@@ -6,10 +6,7 @@ import "../styles/components/Layout.scss";
 const Layout = ({ children }) => {
   return (
     <>
-      <div className="menu-separator">
-        <Header />
-        {children}
-      </div>
+      <div className="menu-separator">{children}</div>
       <Menu />
     </>
   );

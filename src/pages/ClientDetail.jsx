@@ -5,6 +5,7 @@ import { FaPen } from "react-icons/fa";
 import Loading from "../components/Loading";
 import getData from "../utils/getData";
 import config from "../config";
+import Header from "../components/Header";
 import "../styles/pages/ClientDetail.scss";
 
 class ClientDetail extends Component {
@@ -50,6 +51,7 @@ class ClientDetail extends Component {
   render() {
     return (
       <>
+        <Header page="Clientes" />
         <section className="clientDetail">
           <div className="clientDetail__title">
             <h3>INFORMACIÓN DEL CLIENTE</h3>

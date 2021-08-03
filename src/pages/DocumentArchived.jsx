@@ -4,6 +4,7 @@ import sendData from "../utils/sendData";
 import DeleteModal from "../components/DeleteModal";
 import config from "../config";
 import Loading from "../components/Loading";
+import Header from "../components/Header";
 import "../styles/pages/Document.scss";
 
 class DocumentArchived extends Component {
@@ -75,6 +76,7 @@ class DocumentArchived extends Component {
   render() {
     return (
       <>
+        <Header page="Documentos" />
         <section className="document">
           <div className="document__table archived">
             <h4>TITULO</h4>

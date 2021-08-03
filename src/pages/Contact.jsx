@@ -5,6 +5,7 @@ import Search from "../components/Search";
 import getData from "../utils/getData";
 import config from "../config";
 import Loading from "../components/Loading";
+import Header from "../components/Header";
 import "../styles/pages/Contact.scss";
 
 class Contact extends Component {
@@ -65,6 +66,7 @@ class Contact extends Component {
   render() {
     return (
       <>
+        <Header page="Directorio" />
         <Search
           onChange={this.handleSearchChange}
           onSubmit={this.handleSearchSubmit}

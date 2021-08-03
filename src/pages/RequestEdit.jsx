@@ -4,6 +4,7 @@ import getData from "../utils/getData";
 import DeleteModal from "../components/DeleteModal";
 import Loading from "../components/Loading";
 import config from "../config";
+import Header from "../components/Header";
 import "../styles/pages/New.scss";
 
 class ContactNew extends Component {
@@ -115,109 +116,112 @@ class ContactNew extends Component {
 
   render() {
     return (
-      <section className="add">
-        <h3>EDITAR PEDIDO DE SERVICIO</h3>
-        <form
-          action=""
-          id="add__form"
-          className="add__form"
-          onSubmit={this.handleFormSubmit}
-        >
-          <div className="add_form-element-container">
-            <label htmlFor="client">
-              <p>CLIENTE</p>
-              <input
-                onChange={this.handleFormChange}
-                type="text"
-                name="client"
-                id="client"
-                placeholder="Cliente"
-                className="add__form-input"
-                value={this.state.formValues.client}
-              />
-            </label>
-            <label htmlFor="name">
-              <p>PERSONA QUE LLAMÓ</p>
-              <input
-                onChange={this.handleFormChange}
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Nombre de quien llamó"
-                required
-                className="add__form-input"
-                value={this.state.formValues.name}
-              />
-            </label>
-            <label htmlFor="phone">
-              <p>TELÉFONO</p>
-              <input
-                onChange={this.handleFormChange}
-                type="number"
-                name="phone"
-                id="phone"
-                placeholder="2222-2222"
-                required
-                className="add__form-input"
-                value={this.state.formValues.phone}
-              />
-            </label>
-            <label htmlFor="date">
-              <p>FECHA</p>
-              <input
-                onChange={this.handleFormChange}
-                type="datetime-local"
-                name="date"
-                id="date"
-                className="add__form-input"
-                value={this.state.formValues.date}
-              />
-            </label>
-            <label htmlFor="attendant">
-              <p>PERSONA QUE ATENDIÓ</p>
-              <input
-                onChange={this.handleFormChange}
-                type="text"
-                name="attendant"
-                id="attendant"
-                placeholder="Persona de monitoreo"
-                required
-                className="add__form-input"
-                value={this.state.formValues.attendant}
-              />
-            </label>
-            <label htmlFor="detail">
-              <p>DETALLES</p>
-              <input
-                onChange={this.handleFormChange}
-                type="text"
-                name="detail"
-                id="detail"
-                placeholder="Detalles"
-                required
-                className="add__form-input"
-                value={this.state.formValues.detail}
-              />
-            </label>
-          </div>
-          <button type="submit" id="add__button">
-            Editar pedido
-          </button>
-          <button
-            type="button"
-            className="delete_button"
-            onClick={this.handleOpenModal}
+      <>
+        <Header page="Pedidos de servicio" />
+        <section className="add">
+          <h3>EDITAR PEDIDO DE SERVICIO</h3>
+          <form
+            action=""
+            id="add__form"
+            className="add__form"
+            onSubmit={this.handleFormSubmit}
           >
-            Eliminar pedido
-          </button>
-        </form>
-        <DeleteModal
-          opened={this.state.openModal}
-          handleCloseModal={this.handleOpenModal}
-          handleDelete={this.handleDelete}
-        />
-        {this.state.loading && <Loading />}
-      </section>
+            <div className="add_form-element-container">
+              <label htmlFor="client">
+                <p>CLIENTE</p>
+                <input
+                  onChange={this.handleFormChange}
+                  type="text"
+                  name="client"
+                  id="client"
+                  placeholder="Cliente"
+                  className="add__form-input"
+                  value={this.state.formValues.client}
+                />
+              </label>
+              <label htmlFor="name">
+                <p>PERSONA QUE LLAMÓ</p>
+                <input
+                  onChange={this.handleFormChange}
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Nombre de quien llamó"
+                  required
+                  className="add__form-input"
+                  value={this.state.formValues.name}
+                />
+              </label>
+              <label htmlFor="phone">
+                <p>TELÉFONO</p>
+                <input
+                  onChange={this.handleFormChange}
+                  type="number"
+                  name="phone"
+                  id="phone"
+                  placeholder="2222-2222"
+                  required
+                  className="add__form-input"
+                  value={this.state.formValues.phone}
+                />
+              </label>
+              <label htmlFor="date">
+                <p>FECHA</p>
+                <input
+                  onChange={this.handleFormChange}
+                  type="datetime-local"
+                  name="date"
+                  id="date"
+                  className="add__form-input"
+                  value={this.state.formValues.date}
+                />
+              </label>
+              <label htmlFor="attendant">
+                <p>PERSONA QUE ATENDIÓ</p>
+                <input
+                  onChange={this.handleFormChange}
+                  type="text"
+                  name="attendant"
+                  id="attendant"
+                  placeholder="Persona de monitoreo"
+                  required
+                  className="add__form-input"
+                  value={this.state.formValues.attendant}
+                />
+              </label>
+              <label htmlFor="detail">
+                <p>DETALLES</p>
+                <input
+                  onChange={this.handleFormChange}
+                  type="text"
+                  name="detail"
+                  id="detail"
+                  placeholder="Detalles"
+                  required
+                  className="add__form-input"
+                  value={this.state.formValues.detail}
+                />
+              </label>
+            </div>
+            <button type="submit" id="add__button">
+              Editar pedido
+            </button>
+            <button
+              type="button"
+              className="delete_button"
+              onClick={this.handleOpenModal}
+            >
+              Eliminar pedido
+            </button>
+          </form>
+          <DeleteModal
+            opened={this.state.openModal}
+            handleCloseModal={this.handleOpenModal}
+            handleDelete={this.handleDelete}
+          />
+          {this.state.loading && <Loading />}
+        </section>
+      </>
     );
   }
 }

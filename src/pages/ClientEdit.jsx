@@ -5,6 +5,7 @@ import getData from "../utils/getData";
 import sendData from "../utils/sendData";
 import config from "../config";
 import Loading from "../components/Loading";
+import Header from "../components/Header";
 import "../styles/pages/New.scss";
 import "../styles/components/EditorComponent.scss";
 
@@ -133,47 +134,50 @@ class ClientEdit extends Component {
 
   render() {
     return (
-      <section className="add">
-        <h3>AGREGAR UN NUEVO CONTACTO</h3>
-        <form
-          action=""
-          id="add__form"
-          className="add__form"
-          onSubmit={this.handleFormSubmit}
-        >
-          <div className="add_form-element-container">
-            <label htmlFor="name">
-              <p>NOMBRE DEL CLIENTE</p>
-              <input
-                onChange={this.handleFormChange}
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Primer nombre"
-                className="add__form-input"
-                value={this.state.name}
-              />
-            </label>
-          </div>
-          <div id="editor"></div>
-          <button type="submit" id="add__button">
-            Editar cliente
-          </button>
-          <button
-            type="button"
-            className="delete_button"
-            onClick={this.handleOpenModal}
+      <>
+        <Header page="Clientes" />
+        <section className="add">
+          <h3>AGREGAR UN NUEVO CONTACTO</h3>
+          <form
+            action=""
+            id="add__form"
+            className="add__form"
+            onSubmit={this.handleFormSubmit}
           >
-            Eliminar cliente
-          </button>
-        </form>
-        <DeleteModal
-          opened={this.state.openModal}
-          handleCloseModal={this.handleOpenModal}
-          handleDelete={this.handleDelete}
-        />
-        {this.state.loading && <Loading />}
-      </section>
+            <div className="add_form-element-container">
+              <label htmlFor="name">
+                <p>NOMBRE DEL CLIENTE</p>
+                <input
+                  onChange={this.handleFormChange}
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Primer nombre"
+                  className="add__form-input"
+                  value={this.state.name}
+                />
+              </label>
+            </div>
+            <div id="editor"></div>
+            <button type="submit" id="add__button">
+              Editar cliente
+            </button>
+            <button
+              type="button"
+              className="delete_button"
+              onClick={this.handleOpenModal}
+            >
+              Eliminar cliente
+            </button>
+          </form>
+          <DeleteModal
+            opened={this.state.openModal}
+            handleCloseModal={this.handleOpenModal}
+            handleDelete={this.handleDelete}
+          />
+          {this.state.loading && <Loading />}
+        </section>
+      </>
     );
   }
 }

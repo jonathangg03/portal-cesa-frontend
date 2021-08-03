@@ -3,6 +3,7 @@ import getData from "../utils/getData";
 import sendData from "../utils/sendData";
 import config from "../config";
 import Loading from "../components/Loading";
+import Header from "../components/Header";
 import "../styles/pages/Document.scss";
 
 class Document extends Component {
@@ -45,6 +46,7 @@ class Document extends Component {
   render() {
     return (
       <>
+        <Header page="Documentos" />
         <section className="document">
           <div className="document__table">
             <h4>TITULO</h4>

@@ -3,6 +3,7 @@ import QuillEditor from "quill";
 import sendData from "../utils/sendData";
 import config from "../config";
 import Loading from "../components/Loading";
+import Header from "../components/Header";
 import "../styles/pages/New.scss";
 import "../styles/components/EditorComponent.scss";
 
@@ -69,37 +70,40 @@ class ClientNew extends Component {
 
   render() {
     return (
-      <section className="add">
-        <h3>AGREGAR UN NUEVO CONTACTO</h3>
-        <form
-          action=""
-          id="add__form"
-          className="add__form"
-          onSubmit={this.handleFormSubmit}
-        >
-          <div className="add_form-element-container">
-            <label htmlFor="name">
-              <p>NOMBRE DEL CLIENTE</p>
-              <input
-                onChange={this.handleFormChange}
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Primer nombre"
-                className="add__form-input"
-                value={this.state.name}
-                required
-              />
-            </label>
-          </div>
-          <div id="editors"></div>
-          <button type="submit" id="add__button">
-            Agregar Cliente
-          </button>
-        </form>
-        {this.state.loading && <Loading />}
-        {this.state.error && <p>{this.state.error}</p>}
-      </section>
+      <>
+        <Header page="Clientes" />
+        <section className="add">
+          <h3>AGREGAR UN NUEVO CONTACTO</h3>
+          <form
+            action=""
+            id="add__form"
+            className="add__form"
+            onSubmit={this.handleFormSubmit}
+          >
+            <div className="add_form-element-container">
+              <label htmlFor="name">
+                <p>NOMBRE DEL CLIENTE</p>
+                <input
+                  onChange={this.handleFormChange}
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Primer nombre"
+                  className="add__form-input"
+                  value={this.state.name}
+                  required
+                />
+              </label>
+            </div>
+            <div id="editors"></div>
+            <button type="submit" id="add__button">
+              Agregar Cliente
+            </button>
+          </form>
+          {this.state.loading && <Loading />}
+          {this.state.error && <p>{this.state.error}</p>}
+        </section>
+      </>
     );
   }
 }

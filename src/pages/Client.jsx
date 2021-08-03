@@ -5,6 +5,7 @@ import Search from "../components/Search";
 import getData from "../utils/getData";
 import config from "../config";
 import Loading from "../components/Loading";
+import Header from "../components/Header";
 import "../styles/pages/Client.scss";
 
 class Client extends Component {
@@ -62,6 +63,7 @@ class Client extends Component {
   render() {
     return (
       <>
+        <Header page="Clientes" />
         <Search
           onChange={this.handleSearchChange}
           onSubmit={this.handleSearchSubmit}
