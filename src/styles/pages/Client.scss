@@ -11,8 +11,6 @@
     width: 70%;
     margin: 0 auto;
     border-bottom: 1px solid $border-sections;
-    // display: grid;
-    // grid-template-columns: 2fr repeat(2, 1fr);
     p {
       padding: 5px 0;
       text-align: center;
@@ -50,3 +48,34 @@
 //     align-items: center;
 //   }
 // }
+
+@media (min-width: 1100px) {
+  .client__table {
+    display: grid;
+    grid-template-columns: 2fr repeat(2, 1fr);
+    width: auto;
+
+    p,
+    a {
+      text-align: initial;
+      margin: 0;
+      padding: 10px;
+    }
+
+    p {
+      font-size: 1.3rem;
+    }
+
+    .edit {
+      margin: 0 auto;
+    }
+
+    h4 {
+      padding: 10px;
+    }
+  }
+
+  .client__table:first-child {
+    display: grid;
+  }
+}

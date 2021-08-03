@@ -11,11 +11,6 @@
     width: 70%;
     margin: 0 auto;
     border-bottom: 1px solid $border-sections;
-    // display: grid;
-    // grid-template-columns: repeat(4, 1fr) 2fr 0.5fr repeat(2, 1fr) repeat(
-    //     2,
-    //     0.5fr
-    //   );
     p {
       padding: 5px 0;
       font-size: 1.6rem;
@@ -29,26 +24,11 @@
       width: 40px;
       margin: 0 auto;
     }
-    h4:last-child {
-      // text-align: center;
-    }
   }
   &__table:first-child {
     display: none;
   }
 }
-
-// &-column {
-//   display: grid;
-//   grid-template-rows: 30px;
-//   grid-auto-rows: 45px;
-//   font-size: 1.2rem;
-//   div {
-//     border-top: 0.5px solid #d9d9da;
-//     display: flex;
-//     align-items: center;
-//   }
-// }
 
 @media (min-width: 1100px) {
   .contacts__table {
