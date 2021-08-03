@@ -89,10 +89,16 @@ class Contact extends Component {
             return (
               <div className="contacts__table" key={contactItem._id}>
                 <p>{contactItem.firstName}</p>
-                {contactItem.secondName && <p>{contactItem.secondName}</p>}
+                {contactItem.secondName ? (
+                  <p>{contactItem.secondName}</p>
+                ) : (
+                  <p></p>
+                )}
                 <p>{contactItem.firstLastname}</p>
-                {contactItem.secondLastname && (
+                {contactItem.secondLastname ? (
                   <p>{contactItem.secondLastname}</p>
+                ) : (
+                  <p></p>
                 )}
                 <p>{contactItem.email}</p>
                 <p>{contactItem.prefix}</p>
