@@ -23,13 +23,19 @@
   }
   &__client-container {
     font-size: 1.4rem;
+    a {
+      text-decoration: none;
+      span {
+        padding-left: 10px;
+      }
+    }
   }
   .clientDetail__item {
     display: initial;
     padding: 10px 20px;
     * {
       font-size: initial;
-      list-style: initital;
+      list-style: initial;
       tab-size: initial;
     }
     ul,
