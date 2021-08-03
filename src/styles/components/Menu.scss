@@ -88,3 +88,19 @@
   font-size: 2rem;
   z-index: 3;
 }
+
+@media (min-width: 1000px) {
+  .menu,
+  .bg-image {
+    left: 0;
+    width: 275px;
+  }
+
+  .menu__activator {
+    display: none;
+  }
+
+  .menu-separator {
+    padding-left: 275px;
+  }
+}

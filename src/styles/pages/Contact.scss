@@ -49,3 +49,13 @@
 //     align-items: center;
 //   }
 // }
+
+@media (min-width: 1000px) {
+  .contacts__table {
+    // display: grid;
+    // grid-template-columns: repeat(4, 1fr) 2fr 0.5fr repeat(2, 1fr) repeat(
+    //     2,
+    //     0.5fr
+    //   );
+  }
+}
