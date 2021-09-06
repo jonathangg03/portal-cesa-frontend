@@ -22,5 +22,5 @@ El backend de este sitio lo puedes ver en este [repositorio](https://github.com/
 - Quill.
 - Heroku.
 - Firebase.
-- CSS.
+- SASS.
 - MongoDB.
