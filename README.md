@@ -1,4 +1,4 @@
-# Megabyte Chat
+# Portal
 Recreación de un portal similar al que usamos en mi departamento en la empresa en que trabajo.
 
 ## Backend
