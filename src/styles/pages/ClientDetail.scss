@@ -1,4 +1,4 @@
-@import "../Global.scss";
+@import '../Global.scss';
 
 .clientDetail {
   margin: 20px;
@@ -8,11 +8,11 @@
   grid-template-rows: 55px 45px;
   grid-auto-rows: auto;
   border: 1px solid $border-sections;
+
   div {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 15px;
     border: 1px solid $border-sections;
   }
   &__title {
@@ -33,7 +33,6 @@
   }
   .clientDetail__item {
     display: initial;
-    padding: 10px 20px;
     * {
       font-size: initial;
       list-style: initial;

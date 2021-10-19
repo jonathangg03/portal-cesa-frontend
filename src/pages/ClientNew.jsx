@@ -5,6 +5,7 @@ import sendData from '../utils/sendData'
 import config from '../config'
 import Loading from '../components/Loading'
 import Header from '../components/Header'
+import toolbar from '../toolbar'
 import '../styles/pages/New.scss'
 import '../styles/components/EditorComponent.scss'
 
@@ -15,7 +16,7 @@ const states = {
 }
 
 const ClientNew = (props) => {
-  const { quill, quillRef } = useQuill()
+  const { quill, quillRef } = useQuill({ modules: { toolbar: toolbar } })
   const [name, setName] = useState('')
   const [fetchState, setFetchState] = useState(states.initial)
   const [error, setError] = useState(null)
@@ -71,8 +72,8 @@ const ClientNew = (props) => {
             Agregar Cliente
           </button>
         </form>
-        {fetchState === 0 && <Loading />}
-        {fetchState === -1 && <p>{error}</p>}
+        {fetchState === states.loading && <Loading />}
+        {fetchState === states.error && <p>{error}</p>}
         {console.log(fetchState)}
       </section>
     </>
